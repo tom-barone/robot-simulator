@@ -1,0 +1,15 @@
+{
+	"permissions": {
+		"allow": [
+			"Bash(bundle exec rake:*)",
+			"Bash(bundle exec rubocop:*)",
+			"Bash(bundle exec steep:*)",
+			"Bash(bundle exec ruby:*)",
+			"Bash(mv:*)",
+			"Bash(mkdir:*)",
+			"Bash(find:*)",
+			"Bash(ls:*)"
+		],
+		"deny": []
+	}
+}
