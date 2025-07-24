@@ -2,8 +2,6 @@
 
 Spoiler alert: I've been experimenting with Claude Code and this little challenge happens to be a great way of showcasing how I've been using it. Apologies if this is against the rules!
 
-From what I can tell no one has perfectly mastered these coding agents, which is pretty exciting with everyone trying different things to see what works best. By no means is my setup the best, it's still a work in progress.
-
 ## Run with Docker
 
 ```bash
@@ -13,7 +11,9 @@ docker run --rm -it robot-challenge
 
 ## Claude Code - My own experience
 
-These agents seem to work best when given a very constrained environment to work in:
+From what I've seen, no one has perfectly mastered these coding agents yet. I find it pretty exciting with everyone trying different things to see what works best. By no means is my setup the best, it's a constant work in progress.
+
+These agents behave well when given a constrained environment to work in:
 
 - Non-negotiable Test Driven Development (TDD).
 - Hardcore linting with all Rubocop cops turned on.
@@ -23,7 +23,7 @@ These agents seem to work best when given a very constrained environment to work
 
 I was inspired a lot by this guy's [CLAUDE.md](https://github.com/citypaul/.dotfiles/blob/main/claude/.claude/CLAUDE.md).
 
-Naturally when using these agents, one tends to read and review way more code than usual. Ruby is especially fantastic for this with it being one of the better languages to visually parse and read quickly.
+A result of these new tools is we reading much more code than usual. I find Ruby to be especially well suited to this compared to other languages, since it's easy to visually parse and read quickly.
 
 We maintain a set of 3 constantly evolving documents:
 
