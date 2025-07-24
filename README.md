@@ -4,7 +4,12 @@ Spoiler alert: I've been experimenting with Claude Code and this little challeng
 
 From what I can tell no one has perfectly mastered these coding agents, which is pretty exciting with everyone trying different things to see what works best. By no means is my setup the best, it's still a work in progress.
 
-## Getting Started
+## Run with Docker
+
+```bash
+docker build --tag robot-challenge .
+docker run --rm -it robot-challenge
+```
 
 ## Claude Code - My own experience
 
@@ -32,4 +37,3 @@ Each change flows through these documents in order. Supposing we have a complete
 2. Review and update the design document to align with the new requirements.
 3. Write a new plan to implement the change.
 4. Implement the change using TDD.
-

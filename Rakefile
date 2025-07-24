@@ -10,6 +10,9 @@ require 'rubocop/rake_task'
 require 'yard'
 require 'minitest/test_task'
 
+CHECKS = %i[format lint types test docs].freeze
+task default: :precommit
+
 desc 'Run linters'
 task :lint do
   sh 'bundle exec rubocop --autocorrect-all --fail-level I'
@@ -37,7 +40,11 @@ task :types do
   sh 'bundle exec steep check'
 end
 
-desc 'Run all pre-commit checks'
-task precommit: %i[format lint types test docs]
+desc 'Make sure checks pass in Docker'
+task :docker do
+  sh 'docker build -t robot-challenge .'
+  sh "docker run --rm robot-challenge rake #{CHECKS.join(' ')}"
+end
 
-task default: :precommit
+desc 'Run all pre-commit checks'
+task precommit: CHECKS + [:docker]
