@@ -147,4 +147,14 @@ class PositionTest < Minitest::Test
     assert_equal(-1, new_position.x)
     assert_equal 4, new_position.y
   end
+
+  def test_move_warns_for_excessive_coordinates
+    # Arrange
+    position = Position.new(100_001, 0)
+
+    # Act & Assert
+    assert_output(nil, /Warning: Excessively large coordinates/) do
+      position.move(Direction::NORTH)
+    end
+  end
 end

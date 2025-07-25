@@ -11,16 +11,23 @@ module RobotSimulator
     end
 
     def move(direction)
+      warn_if_excessive_coordinates
       case direction
-      when Direction::NORTH
-        Position.new(@x, @y + 1)
-      when Direction::SOUTH
-        Position.new(@x, @y - 1)
-      when Direction::EAST
-        Position.new(@x + 1, @y)
-      when Direction::WEST
-        Position.new(@x - 1, @y)
+      when Direction::NORTH then Position.new(@x, @y + 1)
+      when Direction::SOUTH then Position.new(@x, @y - 1)
+      when Direction::EAST then Position.new(@x + 1, @y)
+      when Direction::WEST then Position.new(@x - 1, @y)
       end
+    end
+
+    private
+
+    # Ruby will handle practically any integer size, but we may want to revisit
+    # our thinking if we ever come across some crazy large numbers.
+    def warn_if_excessive_coordinates
+      return unless @x.abs > 100_000 || @y.abs > 100_000
+
+      warn "Warning: Excessively large coordinates (#{@x}, #{@y})"
     end
   end
 end
