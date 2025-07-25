@@ -11,6 +11,6 @@ SimpleCov.start do
 end
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
-require 'robot'
+require 'robot_simulator'
 
 require 'minitest/autorun'

@@ -42,8 +42,8 @@ end
 
 desc 'Make sure checks pass in Docker'
 task :docker do
-  sh 'docker build -t robot-challenge .'
-  sh "docker run --rm robot-challenge rake #{CHECKS.join(' ')}"
+  sh 'docker build -t robot-simulator .'
+  sh "docker run --rm robot-simulator rake #{CHECKS.join(' ')}"
 end
 
 desc 'Run all pre-commit checks'

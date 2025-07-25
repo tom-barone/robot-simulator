@@ -5,8 +5,8 @@ Spoiler alert: I've been experimenting with Claude Code and this little challeng
 ## Run with Docker
 
 ```bash
-docker build --tag robot-challenge .
-docker run --rm -it robot-challenge
+docker build --tag robot-simulator .
+docker run --rm -it robot-simulator
 ```
 
 ## Architecture
