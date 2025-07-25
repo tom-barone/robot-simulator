@@ -1,0 +1,8 @@
+module RobotSimulator
+  class Board
+    attr_reader width: Integer
+    attr_reader height: Integer
+
+    def initialize: (Integer width, Integer height) -> void
+  end
+end

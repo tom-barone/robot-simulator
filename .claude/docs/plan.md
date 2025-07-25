@@ -27,45 +27,6 @@ This plan implements the robot simulator using Test-Driven Development, broken i
 
 ## Phase 2: Direction Value Object
 
-### Step 5: Direction Creation
-
-- **Red**: Test Direction can be created with name
-- **Green**: Implement Direction class with constructor and name reader
-- **Refactor**: Assess if any improvements needed
-
-### Step 6: Direction Constants
-
-- **Red**: Test Direction::NORTH constant exists
-- **Green**: Implement NORTH constant
-- **Refactor**: Assess if any improvements needed
-- **Red**: Test all four direction constants exist
-- **Green**: Implement SOUTH, EAST, WEST constants
-- **Refactor**: Assess if any improvements needed
-
-### Step 7: Direction Equality
-
-- **Red**: Test two Direction objects with same name are equal
-- **Green**: Implement equals? method
-- **Refactor**: Assess if any improvements needed
-
-### Step 8: Direction Left Rotation
-
-- **Red**: Test NORTH turns left to WEST
-- **Green**: Implement turn_left method for NORTH
-- **Refactor**: Assess if any improvements needed
-- **Red**: Test all directions turn left correctly
-- **Green**: Complete turn_left implementation
-- **Refactor**: Assess if any improvements needed
-
-### Step 9: Direction Right Rotation
-
-- **Red**: Test NORTH turns right to EAST
-- **Green**: Implement turn_right method for NORTH
-- **Refactor**: Assess if any improvements needed
-- **Red**: Test all directions turn right correctly
-- **Green**: Complete turn_right implementation
-- **Refactor**: Assess if any improvements needed
-
 ## Phase 3: Board
 
 ### Step 10: Board Creation
