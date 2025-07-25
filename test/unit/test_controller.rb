@@ -18,17 +18,17 @@ class ControllerTest < Minitest::Test
     assert_equal board, controller.board
   end
 
-  def test_controller_can_execute_commands
+  def test_controller_can_update_robot
     # Arrange
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
     controller = Controller.new(robot, board)
-    command = Commands::MoveCommand.new(controller)
+    new_robot = Robot.new(Position.new(2, 2), Direction::SOUTH)
 
     # Act
-    result = command.execute
+    controller.update_robot(new_robot)
 
     # Assert
-    assert_predicate result, :success?
+    assert_equal new_robot, controller.robot
   end
 end
