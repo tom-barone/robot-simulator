@@ -4,7 +4,6 @@ require 'test_helper'
 
 class PlaceCommandTest < Minitest::Test
   include RobotSimulator
-  include RobotSimulator::Commands
 
   def test_place_command_can_be_created_with_controller_position_and_direction
     # Arrange
@@ -14,7 +13,7 @@ class PlaceCommandTest < Minitest::Test
     direction = Direction::NORTH
 
     # Act
-    command = PlaceCommand.new(controller, position, direction)
+    command = Command::Place.new(controller, position, direction)
 
     # Assert
     refute_nil command
@@ -26,7 +25,7 @@ class PlaceCommandTest < Minitest::Test
     controller = Controller.new(nil, board)
     position = Position.new(1, 1)
     direction = Direction::NORTH
-    command = PlaceCommand.new(controller, position, direction)
+    command = Command::Place.new(controller, position, direction)
 
     # Act
     result = command.execute
@@ -41,7 +40,7 @@ class PlaceCommandTest < Minitest::Test
     controller = Controller.new(nil, board)
     position = Position.new(5, 5)
     direction = Direction::NORTH
-    command = PlaceCommand.new(controller, position, direction)
+    command = Command::Place.new(controller, position, direction)
 
     # Act
     result = command.execute

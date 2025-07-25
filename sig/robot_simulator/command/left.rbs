@@ -1,9 +1,9 @@
 module RobotSimulator
-  module Commands
-    class RightCommand < Command
+  module Command
+    class Left
       def initialize: (Controller controller) -> void
 
-      def execute: () -> Command
+      def execute: () -> Result
     end
   end
 end

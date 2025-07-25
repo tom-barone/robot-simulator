@@ -11,21 +11,22 @@ module RobotSimulator
     end
 
     def place_robot(position, direction)
-      @controller.update_robot(Robot.new(position, direction))
+      command = Command::Place.new(@controller, position, direction)
+      command.execute
     end
 
     def move_robot
-      command = Commands::MoveCommand.new(@controller)
+      command = Command::Move.new(@controller)
       command.execute
     end
 
     def turn_left
-      command = Commands::LeftCommand.new(@controller)
+      command = Command::Left.new(@controller)
       command.execute
     end
 
     def turn_right
-      command = Commands::RightCommand.new(@controller)
+      command = Command::Right.new(@controller)
       command.execute
     end
   end

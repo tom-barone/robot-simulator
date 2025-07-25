@@ -7,10 +7,10 @@ module RobotSimulator
 
     def place_robot: (Position position, Direction::direction_t direction) -> void
 
-    def move_robot: () -> Commands::Command
+    def move_robot: () -> Command::Result
 
-    def turn_left: () -> Commands::Command
+    def turn_left: () -> Command::Result
 
-    def turn_right: () -> Commands::Command
+    def turn_right: () -> Command::Result
   end
 end

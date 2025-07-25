@@ -1,9 +1,9 @@
 module RobotSimulator
-  module Commands
-    class PlaceCommand < Command
+  module Command
+    class Place
       def initialize: (Controller controller, Position position, Direction::direction_t direction) -> void
 
-      def execute: () -> Command
+      def execute: () -> Result
     end
   end
 end

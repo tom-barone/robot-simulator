@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 module RobotSimulator
-  module Commands
-    # Represents a command and its execution result, either success or error.
-    class Command
+  module Command
+    # Represents the result of command execution.
+    # Let's us gracefully handle errors if the command fails.
+    class Result
       attr_reader :error
 
       def initialize(success, error = nil)

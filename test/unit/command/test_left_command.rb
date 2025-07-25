@@ -2,29 +2,28 @@
 
 require 'test_helper'
 
-class RightCommandTest < Minitest::Test
+class LeftCommandTest < Minitest::Test
   include RobotSimulator
-  include RobotSimulator::Commands
 
-  def test_right_command_can_be_created_with_controller
+  def test_left_command_can_be_created_with_controller
     # Arrange
     board = Board.new(5, 5)
-    robot = Robot.new(Position.new(1, 1), Direction::NORTH)
+    robot = Robot.new(RobotSimulator::Position.new(1, 1), Direction::NORTH)
     controller = Controller.new(robot, board)
 
     # Act
-    command = RightCommand.new(controller)
+    command = Command::Left.new(controller)
 
     # Assert
     refute_nil command
   end
 
-  def test_right_command_executes_successfully_when_robot_is_placed
+  def test_left_command_executes_successfully_when_robot_is_placed
     # Arrange
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
     controller = Controller.new(robot, board)
-    command = RightCommand.new(controller)
+    command = Command::Left.new(controller)
 
     # Act
     result = command.execute
@@ -33,11 +32,11 @@ class RightCommandTest < Minitest::Test
     assert_predicate result, :success?
   end
 
-  def test_right_command_fails_when_no_robot_placed
+  def test_left_command_fails_when_no_robot_placed
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    command = RightCommand.new(controller)
+    command = Command::Left.new(controller)
 
     # Act
     result = command.execute

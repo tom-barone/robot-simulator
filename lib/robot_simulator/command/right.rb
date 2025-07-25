@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
 module RobotSimulator
-  module Commands
+  module Command
     # Command to turn robot right with robot existence check
-    class RightCommand < Command
+    class Right
       def initialize(controller)
         @controller = controller
-        super(false, nil)
       end
 
       def execute
         robot = @controller.robot
-        return Command.error(NoRobotPlacedError) unless robot
+        return Result.error(NoRobotPlacedError) unless robot
 
         new_robot = robot.turn_right
         @controller.update_robot(new_robot)
-        Command.success
+        Result.success
       end
     end
   end
