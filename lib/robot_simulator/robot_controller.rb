@@ -10,8 +10,12 @@ module RobotSimulator
       @board = board
     end
 
-    def execute_command(command)
+    def execute(command)
       command.execute
+    end
+
+    def update_robot(new_robot)
+      @robot = new_robot
     end
   end
 end

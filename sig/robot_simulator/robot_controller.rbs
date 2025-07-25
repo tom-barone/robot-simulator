@@ -5,6 +5,8 @@ module RobotSimulator
 
     def initialize: (Robot? robot, Board board) -> void
 
-    def execute_command: (Commands::Command command) -> Commands::Command
+    def execute: (Commands::Command command) -> Commands::Command
+
+    def update_robot: (Robot robot) -> void
   end
 end

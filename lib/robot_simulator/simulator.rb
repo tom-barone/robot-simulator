@@ -18,21 +18,21 @@ module RobotSimulator
 
     def move_robot
       command = Commands::MoveCommand.new(@controller)
-      result = @controller.execute_command(command)
+      result = @controller.execute(command)
       @robot = @controller.robot if result.success?
       result
     end
 
     def turn_left
       command = Commands::LeftCommand.new(@controller)
-      result = @controller.execute_command(command)
+      result = @controller.execute(command)
       @robot = @controller.robot if result.success?
       result
     end
 
     def turn_right
       command = Commands::RightCommand.new(@controller)
-      result = @controller.execute_command(command)
+      result = @controller.execute(command)
       @robot = @controller.robot if result.success?
       result
     end

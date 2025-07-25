@@ -14,7 +14,7 @@ module RobotSimulator
         return Command.error(NoRobotPlacedError) unless robot
 
         new_robot = robot.turn_left
-        @controller.instance_variable_set(:@robot, new_robot)
+        @controller.update_robot(new_robot)
         Command.success
       end
     end

@@ -15,7 +15,7 @@ module RobotSimulator
 
         new_robot = robot.move
         if @controller.board.valid?(new_robot.position)
-          @controller.instance_variable_set(:@robot, new_robot)
+          @controller.update_robot(new_robot)
           Command.success
         else
           Command.error(RobotWouldFallError)
