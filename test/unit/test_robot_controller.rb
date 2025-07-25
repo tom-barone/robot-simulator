@@ -13,7 +13,7 @@ class RobotControllerTest < Minitest::Test
     command = Commands::MoveCommand.new(controller)
 
     # Act
-    result = controller.execute(command)
+    result = command.execute
 
     # Assert
     assert_predicate result, :success?
