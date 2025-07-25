@@ -9,6 +9,12 @@ docker build --tag robot-challenge .
 docker run --rm -it robot-challenge
 ```
 
+## Architecture
+
+The structure is pretty standard OOP. The only interesting design choice is the Command Pattern to encapsulate each robot instruction as an object, and use of a RobotController to act as the receiver for the commands.
+
+I renamed `Table` to `Board` because `Table` can be easily confused with data tables etc.
+
 ## Claude Code - My own experience
 
 From what I've seen, no one has perfectly mastered these coding agents yet. I find it pretty exciting with everyone trying different things to see what works best. By no means is my setup the best, it's a constant work in progress.
@@ -37,3 +43,7 @@ Each change flows through these documents in order. Supposing we have a complete
 2. Review and update the design document to align with the new requirements.
 3. Write a new plan to implement the change.
 4. Implement the change using TDD.
+
+I try not to be too demanding about how these docs are written, since they're not really for human consumption.
+
+Another thing I've found is that so long as the design / plan docs are 80% accurate to what we want, thats good enough to get started. I've fallen into the trap of tuning that last 20% which takes ages and ends up being unnecessary. The finer details will flesh themselves out as we implement the code step by step.
