@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module RobotSimulator
-  # Represents a robot that can be placed and moved on a board
+  # A robot that has a position and direction.
+  # It can move forward, turn left, or turn right.
   class Robot
     attr_reader :position, :direction
 

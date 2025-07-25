@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RobotSimulator
-  # Manages robot & board state
+  # Manages robot & board state.
   # This will be passed to our commands to execute actions
   class Controller
     attr_reader :robot, :board
