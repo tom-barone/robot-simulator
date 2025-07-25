@@ -1,0 +1,39 @@
+name: "continuous integration"
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  run-checks:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v4"
+
+      - name: "Setup Ruby for the API"
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4.4"
+          bundler-cache: true
+
+      - name: "Format"
+        run: "bundle exec rake format"
+
+      - name: "Fail if formatting has changed files"
+        run: |
+          if ! git diff --exit-code; then
+            exit 1
+          fi
+
+      - name: "Lint"
+        run: "bundle exec rake lint"
+
+      - name: "Types"
+        run: "bundle exec rake types"
+
+      - name: "Test"
+        run: "bundle exec rake test"
+
+      - name: "Generate docs"
+        run: "bundle exec rake docs"
