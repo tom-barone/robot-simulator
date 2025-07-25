@@ -3,10 +3,13 @@
 require 'test_helper'
 
 class CommandTest < Minitest::Test
+  include RobotSimulator
+  include RobotSimulator::Commands
+
   def test_command_can_be_created_as_success
     # Arrange
     # Act
-    command = RobotSimulator::Commands::Command.success
+    command = Command.success
 
     # Assert
     assert_predicate command, :success?
@@ -15,7 +18,7 @@ class CommandTest < Minitest::Test
   def test_command_can_be_created_as_error_with_error_class
     # Arrange
     # Act
-    command = RobotSimulator::Commands::Command.error(RobotSimulator::RobotWouldFallError)
+    command = Command.error(RobotWouldFallError)
 
     # Assert
     assert_predicate command, :error?
@@ -23,7 +26,7 @@ class CommandTest < Minitest::Test
 
   def test_command_success_is_not_error
     # Arrange
-    command = RobotSimulator::Commands::Command.success
+    command = Command.success
 
     # Act
     # Assert
@@ -32,7 +35,7 @@ class CommandTest < Minitest::Test
 
   def test_command_error_is_not_success
     # Arrange
-    command = RobotSimulator::Commands::Command.error(RobotSimulator::NoRobotPlacedError)
+    command = Command.error(NoRobotPlacedError)
 
     # Act
     # Assert
@@ -41,18 +44,18 @@ class CommandTest < Minitest::Test
 
   def test_command_error_returns_error_instance
     # Arrange
-    command = RobotSimulator::Commands::Command.error(RobotSimulator::NoRobotPlacedError)
+    command = Command.error(NoRobotPlacedError)
 
     # Act
     error = command.error
 
     # Assert
-    assert_instance_of RobotSimulator::NoRobotPlacedError, error
+    assert_instance_of NoRobotPlacedError, error
   end
 
   def test_command_error_message_returns_error_message
     # Arrange
-    command = RobotSimulator::Commands::Command.error(RobotSimulator::NoRobotPlacedError)
+    command = Command.error(NoRobotPlacedError)
 
     # Act
     message = command.error_message

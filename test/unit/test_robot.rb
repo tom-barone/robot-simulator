@@ -3,13 +3,15 @@
 require 'test_helper'
 
 class RobotTest < Minitest::Test
+  include RobotSimulator
+
   def test_robot_can_be_created_with_position_and_direction
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
 
     # Act
-    robot = RobotSimulator::Robot.new(position, direction)
+    robot = Robot.new(position, direction)
 
     # Assert
     assert_equal position, robot.position
@@ -18,9 +20,9 @@ class RobotTest < Minitest::Test
 
   def test_robot_can_move_forward_in_facing_direction
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    robot = Robot.new(position, direction)
 
     # Act
     new_robot = robot.move
@@ -32,9 +34,9 @@ class RobotTest < Minitest::Test
 
   def test_robot_move_returns_new_robot_instance
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    original_robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    original_robot = Robot.new(position, direction)
 
     # Act
     new_robot = original_robot.move
@@ -45,9 +47,9 @@ class RobotTest < Minitest::Test
 
   def test_robot_move_does_not_mutate_original_robot
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    original_robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    original_robot = Robot.new(position, direction)
 
     # Act
     original_robot.move
@@ -59,9 +61,9 @@ class RobotTest < Minitest::Test
 
   def test_robot_move_returns_robot_with_updated_position
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    original_robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    original_robot = Robot.new(position, direction)
 
     # Act
     new_robot = original_robot.move
@@ -73,9 +75,9 @@ class RobotTest < Minitest::Test
 
   def test_robot_turn_left_returns_new_robot_instance
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    original_robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    original_robot = Robot.new(position, direction)
 
     # Act
     new_robot = original_robot.turn_left
@@ -86,35 +88,35 @@ class RobotTest < Minitest::Test
 
   def test_robot_turn_left_does_not_mutate_original_robot
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    original_robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    original_robot = Robot.new(position, direction)
 
     # Act
     original_robot.turn_left
 
     # Assert
-    assert_equal RobotSimulator::Direction::NORTH, original_robot.direction
+    assert_equal Direction::NORTH, original_robot.direction
   end
 
   def test_robot_turn_left_returns_robot_with_updated_direction
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    original_robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    original_robot = Robot.new(position, direction)
 
     # Act
     new_robot = original_robot.turn_left
 
     # Assert
-    assert_equal RobotSimulator::Direction::WEST, new_robot.direction
+    assert_equal Direction::WEST, new_robot.direction
   end
 
   def test_robot_turn_right_returns_new_robot_instance
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    original_robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    original_robot = Robot.new(position, direction)
 
     # Act
     new_robot = original_robot.turn_right
@@ -125,27 +127,27 @@ class RobotTest < Minitest::Test
 
   def test_robot_turn_right_does_not_mutate_original_robot
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    original_robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    original_robot = Robot.new(position, direction)
 
     # Act
     original_robot.turn_right
 
     # Assert
-    assert_equal RobotSimulator::Direction::NORTH, original_robot.direction
+    assert_equal Direction::NORTH, original_robot.direction
   end
 
   def test_robot_turn_right_returns_robot_with_updated_direction
     # Arrange
-    position = RobotSimulator::Position.new(1, 2)
-    direction = RobotSimulator::Direction::NORTH
-    original_robot = RobotSimulator::Robot.new(position, direction)
+    position = Position.new(1, 2)
+    direction = Direction::NORTH
+    original_robot = Robot.new(position, direction)
 
     # Act
     new_robot = original_robot.turn_right
 
     # Assert
-    assert_equal RobotSimulator::Direction::EAST, new_robot.direction
+    assert_equal Direction::EAST, new_robot.direction
   end
 end
