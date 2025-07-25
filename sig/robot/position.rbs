@@ -1,6 +1,0 @@
-class Position
-  attr_reader x: Integer
-  attr_reader y: Integer
-
-  def initialize: (Integer x_coord, Integer y_coord) -> void
-end

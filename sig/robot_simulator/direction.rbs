@@ -1,0 +1,12 @@
+module RobotSimulator
+  module Direction
+    NORTH: Symbol
+    SOUTH: Symbol
+    EAST: Symbol
+    WEST: Symbol
+    CLOCKWISE: Array[Symbol]
+
+    def self.turn_right: (Symbol direction) -> Symbol
+    def self.turn_left: (Symbol direction) -> Symbol
+  end
+end
