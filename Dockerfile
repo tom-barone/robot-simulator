@@ -1,13 +1,18 @@
 # Alpine = nice and small
 # Friends don't bloat other friends machines with massive docker images
 FROM ruby:3.4.4-alpine
-RUN apk add --no-cache build-base
 
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+
+# Remove build dependencies after `bundle install` to keep the image small
+RUN apk add --no-cache --virtual .build-deps build-base yaml-dev \
+		&& bundle install \
+		&& bundle clean --force \
+		&& rm -rf /usr/local/bundle/cache \
+		&& apk del .build-deps
 
 COPY . .
 
-CMD ["ruby", "lib/robot.rb"]
+CMD ["ruby", "lib/robot_simulator.rb"]
