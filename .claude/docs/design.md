@@ -39,7 +39,6 @@ classDiagram
         +y: Integer
         +initialize(x: Integer, y: Integer): Position
         +move(direction: Direction): Position
-        +equals?(other: Position): boolean
     }
 
     class Direction {

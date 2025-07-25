@@ -10,20 +10,11 @@ This plan implements the robot simulator using Test-Driven Development, broken i
 - **Green**: Implement Position class with constructor and attr_readers
 - **Refactor**: Assess if any improvements needed
 
-### Step 2: Position Equality
-
-- **Red**: Test two Position objects with same coordinates are equal
-- **Green**: Implement equals? method
-- **Refactor**: Assess if any improvements needed
-
-### Step 3: Position Movement
+### Step 4: Position Movement - All Directions
 
 - **Red**: Test Position can move north (y+1)
 - **Green**: Implement move method for NORTH direction
 - **Refactor**: Assess if any improvements needed
-
-### Step 4: Position Movement - All Directions
-
 - **Red**: Test Position can move south (y-1)
 - **Green**: Extend move method for SOUTH
 - **Refactor**: Assess if any improvements needed
