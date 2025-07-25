@@ -10,16 +10,8 @@ module RobotSimulator
       @board = board
     end
 
-    def move_robot
-      Commands::MoveCommand.new(self).execute
-    end
-
-    def turn_robot_left
-      Commands::LeftCommand.new(self).execute
-    end
-
-    def turn_robot_right
-      Commands::RightCommand.new(self).execute
+    def execute_command(command)
+      command.execute
     end
   end
 end

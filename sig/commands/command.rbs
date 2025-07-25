@@ -14,6 +14,8 @@ module RobotSimulator
       def error?: () -> bool
 
       def error_message: () -> String?
+
+      def execute: () -> Command
     end
   end
 end

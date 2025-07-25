@@ -3,12 +3,8 @@ module RobotSimulator
     attr_reader robot: Robot?
     attr_reader board: Board
 
-    def initialize: (Robot robot, Board board) -> void
+    def initialize: (Robot? robot, Board board) -> void
 
-    def move_robot: () -> Commands::Command
-
-    def turn_robot_left: () -> Commands::Command
-
-    def turn_robot_right: () -> Commands::Command
+    def execute_command: (Commands::Command command) -> Commands::Command
   end
 end
