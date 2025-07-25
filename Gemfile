@@ -8,7 +8,7 @@ ruby '~> 3.4.4'
 # wanted but for this small project it's not worth it.
 
 # I like having a comment & link for each gem so I can quickly
-# jump to the web page for each gem.
+# jump to the relevant web page.
 
 # Task runner [https://github.com/ruby/rake]
 gem 'rake', '~> 13.0'

@@ -46,4 +46,4 @@ Each change flows through these documents in order. Supposing we have a complete
 
 I try not to be too demanding about how these docs are written, since they're not really for human consumption.
 
-Another thing I've found is that so long as the design / plan docs are 80% accurate to what we want, thats good enough to get started. I've fallen into the trap of tuning that last 20% which takes ages and ends up being unnecessary. The finer details will flesh themselves out as we implement the code step by step.
+Another thing I've found is that so long as the design / plan docs are 80% accurate to what we want, thats good enough to get started. I've fallen into the trap of trying to tune that last 20% which takes ages and ends up being unnecessary. The finer details will flesh themselves out as we implement the code step by step.

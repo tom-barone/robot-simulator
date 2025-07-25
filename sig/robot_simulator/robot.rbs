@@ -1,0 +1,8 @@
+module RobotSimulator
+  class Robot
+    attr_reader position: Position
+    attr_reader direction: Direction
+
+    def initialize: (Position position, Direction direction) -> void
+  end
+end
