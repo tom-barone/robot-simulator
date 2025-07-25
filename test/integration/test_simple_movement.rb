@@ -138,6 +138,7 @@ class SimulatorIntegrationTest < Minitest::Test
 
     # Assert
     assert_predicate result, :success?
+    assert_equal Position.new(3, 4), simulator.controller.robot.position
   end
 
   def test_unplaced_robot_move_command_returns_error

@@ -32,6 +32,7 @@ class PlaceCommandTest < Minitest::Test
 
     # Assert
     assert_predicate result, :success?
+    assert_equal position, controller.robot.position
   end
 
   def test_place_command_fails_when_position_is_invalid
@@ -47,5 +48,6 @@ class PlaceCommandTest < Minitest::Test
 
     # Assert
     assert_predicate result, :error?
+    assert_instance_of RobotWouldFallError, result.error
   end
 end

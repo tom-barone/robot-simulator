@@ -44,6 +44,7 @@ class MoveCommandTest < Minitest::Test
 
     # Assert
     assert_predicate result, :error?
+    assert_instance_of RobotWouldFallError, result.error
   end
 
   def test_move_command_fails_when_no_robot_placed
@@ -57,5 +58,6 @@ class MoveCommandTest < Minitest::Test
 
     # Assert
     assert_predicate result, :error?
+    assert_instance_of NoRobotPlacedError, result.error
   end
 end

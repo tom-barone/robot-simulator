@@ -10,6 +10,12 @@ module RobotSimulator
       @y = y_coord
     end
 
+    def ==(other)
+      return false unless other.is_a?(Position)
+
+      @x == other.x && @y == other.y
+    end
+
     def move(direction)
       warn_if_excessive_coordinates
       case direction

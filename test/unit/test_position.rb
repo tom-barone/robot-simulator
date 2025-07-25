@@ -137,6 +137,24 @@ class PositionTest < Minitest::Test
     assert_equal 4, new_position.y
   end
 
+  def test_equality_of_positions_with_same_coordinates
+    # Arrange
+    position1 = Position.new(1, 2)
+    position2 = Position.new(1, 2)
+
+    # Act & Assert
+    assert_equal position1, position2
+  end
+
+  def test_inequality_of_positions_with_different_coordinates
+    # Arrange
+    position1 = Position.new(1, 2)
+    position2 = Position.new(2, 1)
+
+    # Act & Assert
+    refute_equal position1, position2
+  end
+
   def test_move_warns_for_excessive_coordinates
     # Arrange
     position = Position.new(100_001, 0)

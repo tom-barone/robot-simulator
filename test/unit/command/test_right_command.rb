@@ -43,5 +43,6 @@ class RightCommandTest < Minitest::Test
 
     # Assert
     assert_predicate result, :error?
+    assert_instance_of NoRobotPlacedError, result.error
   end
 end
