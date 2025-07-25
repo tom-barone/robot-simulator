@@ -34,3 +34,6 @@ gem 'simplecov', require: false
 
 # Doc generation [https://yardoc.org]
 gem 'yard', '~> 0.9.37'
+
+# Interactive Ruby shell for experimenting [https://github.com/ruby/irb]
+gem 'irb'
