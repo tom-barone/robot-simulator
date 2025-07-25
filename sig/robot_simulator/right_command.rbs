@@ -1,7 +1,0 @@
-module RobotSimulator
-  class RightCommand < Command
-    def initialize: (RobotController controller) -> void
-
-    def execute: () -> Command
-  end
-end

@@ -1,0 +1,9 @@
+module RobotSimulator
+  module Commands
+    class MoveCommand < Command
+      def initialize: (RobotController controller) -> void
+
+      def execute: () -> Command
+    end
+  end
+end

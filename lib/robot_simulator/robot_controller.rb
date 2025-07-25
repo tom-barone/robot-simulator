@@ -11,15 +11,15 @@ module RobotSimulator
     end
 
     def move_robot
-      MoveCommand.new(self).execute
+      Commands::MoveCommand.new(self).execute
     end
 
     def turn_robot_left
-      LeftCommand.new(self).execute
+      Commands::LeftCommand.new(self).execute
     end
 
     def turn_robot_right
-      RightCommand.new(self).execute
+      Commands::RightCommand.new(self).execute
     end
   end
 end

@@ -10,7 +10,7 @@ class MoveCommandTest < Minitest::Test
     controller = RobotSimulator::RobotController.new(robot, board)
 
     # Act
-    command = RobotSimulator::MoveCommand.new(controller)
+    command = RobotSimulator::Commands::MoveCommand.new(controller)
 
     # Assert
     refute_nil command
@@ -21,7 +21,7 @@ class MoveCommandTest < Minitest::Test
     board = RobotSimulator::Board.new(5, 5)
     robot = RobotSimulator::Robot.new(RobotSimulator::Position.new(1, 1), RobotSimulator::Direction::NORTH)
     controller = RobotSimulator::RobotController.new(robot, board)
-    command = RobotSimulator::MoveCommand.new(controller)
+    command = RobotSimulator::Commands::MoveCommand.new(controller)
 
     # Act
     result = command.execute
@@ -35,7 +35,7 @@ class MoveCommandTest < Minitest::Test
     board = RobotSimulator::Board.new(5, 5)
     robot = RobotSimulator::Robot.new(RobotSimulator::Position.new(1, 4), RobotSimulator::Direction::NORTH)
     controller = RobotSimulator::RobotController.new(robot, board)
-    command = RobotSimulator::MoveCommand.new(controller)
+    command = RobotSimulator::Commands::MoveCommand.new(controller)
 
     # Act
     result = command.execute
@@ -48,7 +48,7 @@ class MoveCommandTest < Minitest::Test
     # Arrange
     board = RobotSimulator::Board.new(5, 5)
     controller = RobotSimulator::RobotController.new(nil, board)
-    command = RobotSimulator::MoveCommand.new(controller)
+    command = RobotSimulator::Commands::MoveCommand.new(controller)
 
     # Act
     result = command.execute

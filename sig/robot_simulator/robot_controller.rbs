@@ -5,10 +5,10 @@ module RobotSimulator
 
     def initialize: (Robot robot, Board board) -> void
 
-    def move_robot: () -> Command
+    def move_robot: () -> Commands::Command
 
-    def turn_robot_left: () -> Command
+    def turn_robot_left: () -> Commands::Command
 
-    def turn_robot_right: () -> Command
+    def turn_robot_right: () -> Commands::Command
   end
 end

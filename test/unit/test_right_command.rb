@@ -10,7 +10,7 @@ class RightCommandTest < Minitest::Test
     controller = RobotSimulator::RobotController.new(robot, board)
 
     # Act
-    command = RobotSimulator::RightCommand.new(controller)
+    command = RobotSimulator::Commands::RightCommand.new(controller)
 
     # Assert
     refute_nil command
@@ -21,7 +21,7 @@ class RightCommandTest < Minitest::Test
     board = RobotSimulator::Board.new(5, 5)
     robot = RobotSimulator::Robot.new(RobotSimulator::Position.new(1, 1), RobotSimulator::Direction::NORTH)
     controller = RobotSimulator::RobotController.new(robot, board)
-    command = RobotSimulator::RightCommand.new(controller)
+    command = RobotSimulator::Commands::RightCommand.new(controller)
 
     # Act
     result = command.execute
@@ -34,7 +34,7 @@ class RightCommandTest < Minitest::Test
     # Arrange
     board = RobotSimulator::Board.new(5, 5)
     controller = RobotSimulator::RobotController.new(nil, board)
-    command = RobotSimulator::RightCommand.new(controller)
+    command = RobotSimulator::Commands::RightCommand.new(controller)
 
     # Act
     result = command.execute
