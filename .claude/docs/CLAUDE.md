@@ -1,6 +1,8 @@
 The following documentation formats and names are given below.
 
-When writing documentation:
+You will always strive for simplicity and clarity in your writing, keeping everything as concise as possible.
+
+Follow these formats strictly to ensure consistency and clarity in the documentation.
 
 - Avoid bold / italics and use simple markdown formatting.
 
