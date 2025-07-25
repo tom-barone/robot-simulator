@@ -2,7 +2,7 @@
 
 module RobotSimulator
   module Commands
-    # Represents a command and its execution result, either success or error
+    # Represents a command and its execution result, either success or error.
     class Command
       attr_reader :error
 
