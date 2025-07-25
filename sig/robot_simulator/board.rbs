@@ -4,5 +4,6 @@ module RobotSimulator
     attr_reader height: Integer
 
     def initialize: (Integer width, Integer height) -> void
+    def valid?: (Position position) -> bool
   end
 end
