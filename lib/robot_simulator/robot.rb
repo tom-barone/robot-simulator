@@ -12,8 +12,6 @@ module RobotSimulator
 
     def move
       new_position = @position.move(@direction)
-      return self unless new_position
-
       Robot.new(new_position, @direction)
     end
 

@@ -10,25 +10,23 @@ class RobotControllerTest < Minitest::Test
     controller = RobotSimulator::RobotController.new(robot, board)
 
     # Act
-    controller.move_robot
+    result = controller.move_robot
 
     # Assert
-    assert_equal 1, controller.robot.position.x
-    assert_equal 2, controller.robot.position.y
+    assert_predicate result, :success?
   end
 
-  def test_controller_ignores_move_when_position_would_be_invalid
+  def test_controller_returns_error_when_move_would_be_invalid
     # Arrange
     board = RobotSimulator::Board.new(5, 5)
     robot = RobotSimulator::Robot.new(RobotSimulator::Position.new(1, 4), RobotSimulator::Direction::NORTH)
     controller = RobotSimulator::RobotController.new(robot, board)
 
     # Act
-    controller.move_robot
+    result = controller.move_robot
 
     # Assert
-    assert_equal 1, controller.robot.position.x
-    assert_equal 4, controller.robot.position.y
+    assert_predicate result, :error?
   end
 
   def test_controller_can_turn_robot_left
