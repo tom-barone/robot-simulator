@@ -17,6 +17,8 @@ module RobotSimulator
       when Direction::SOUTH then Position.new(@x, @y - 1)
       when Direction::EAST then Position.new(@x + 1, @y)
       when Direction::WEST then Position.new(@x - 1, @y)
+      else
+        raise ArgumentError, "Unhandled direction: #{direction}"
       end
     end
 

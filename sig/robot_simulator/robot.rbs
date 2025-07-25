@@ -1,8 +1,14 @@
 module RobotSimulator
   class Robot
     attr_reader position: Position
-    attr_reader direction: Direction
+    attr_reader direction: Direction::direction_t
 
-    def initialize: (Position position, Direction direction) -> void
+    def initialize: (Position position, Direction::direction_t direction) -> void
+
+    def move: () -> Robot
+
+    def turn_left: () -> Robot
+
+    def turn_right: () -> Robot
   end
 end

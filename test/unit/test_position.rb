@@ -89,17 +89,6 @@ class PositionTest < Minitest::Test
     assert_equal 1, original_position.y
   end
 
-  def test_move_with_invalid_direction_returns_nil
-    # Arrange
-    position = Position.new(1, 1)
-
-    # Act
-    result = position.move(:invalid)
-
-    # Assert
-    assert_nil result
-  end
-
   def test_move_north_from_edge_coordinates
     # Arrange
     position = Position.new(0, 4)
@@ -155,6 +144,16 @@ class PositionTest < Minitest::Test
     # Act & Assert
     assert_output(nil, /Warning: Excessively large coordinates/) do
       position.move(Direction::NORTH)
+    end
+  end
+
+  def test_move_raises_error_for_invalid_direction
+    # Arrange
+    position = Position.new(1, 1)
+
+    # Act & Assert
+    assert_raises(ArgumentError) do
+      position.move(:invalid_direction)
     end
   end
 end

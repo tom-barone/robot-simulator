@@ -58,12 +58,6 @@ This plan implements the robot simulator using Test-Driven Development, broken i
 - **Green**: Implement Robot class with constructor accepting position and direction
 - **Refactor**: Assess if any improvements needed
 
-### Step 13: Robot Placement Check
-
-- **Red**: Test Robot knows if it has valid position and direction
-- **Green**: Implement placed? method checking for nil position/direction
-- **Refactor**: Assess if any improvements needed
-
 ### Step 14: Robot Movement
 
 - **Red**: Test Robot can move forward in its facing direction

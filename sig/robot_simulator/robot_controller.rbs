@@ -1,0 +1,14 @@
+module RobotSimulator
+  class RobotController
+    attr_reader robot: Robot?
+    attr_reader board: Board
+
+    def initialize: (Robot robot, Board board) -> void
+
+    def move_robot: () -> void
+
+    def turn_robot_left: () -> void
+
+    def turn_robot_right: () -> void
+  end
+end

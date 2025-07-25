@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module RobotSimulator
-  # The directions a robot can face and methods to manipulate
-  # those directions.
+  # The directions a robot can face and methods to manipulate those directions.
   module Direction
     NORTH = :north
     SOUTH = :south
