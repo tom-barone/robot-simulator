@@ -9,7 +9,7 @@ class RobotControllerTest < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
-    controller = RobotController.new(robot, board)
+    controller = Controller.new(robot, board)
     command = Commands::MoveCommand.new(controller)
 
     # Act
@@ -25,7 +25,7 @@ class RobotControllerTest < Minitest::Test
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
 
     # Act
-    controller = RobotController.new(robot, board)
+    controller = Controller.new(robot, board)
 
     # Assert
     assert_equal robot, controller.robot

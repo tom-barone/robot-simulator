@@ -2,7 +2,7 @@
 
 module RobotSimulator
   # Manages robot state and executes commands with boundary validation
-  class RobotController
+  class Controller
     attr_reader :robot, :board
 
     def initialize(robot, board)

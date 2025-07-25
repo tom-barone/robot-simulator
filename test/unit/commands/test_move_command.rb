@@ -10,7 +10,7 @@ class MoveCommandTest < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
-    controller = RobotController.new(robot, board)
+    controller = Controller.new(robot, board)
 
     # Act
     command = MoveCommand.new(controller)
@@ -23,7 +23,7 @@ class MoveCommandTest < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
-    controller = RobotController.new(robot, board)
+    controller = Controller.new(robot, board)
     command = MoveCommand.new(controller)
 
     # Act
@@ -37,7 +37,7 @@ class MoveCommandTest < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 4), Direction::NORTH)
-    controller = RobotController.new(robot, board)
+    controller = Controller.new(robot, board)
     command = MoveCommand.new(controller)
 
     # Act
@@ -50,7 +50,7 @@ class MoveCommandTest < Minitest::Test
   def test_move_command_fails_when_no_robot_placed
     # Arrange
     board = Board.new(5, 5)
-    controller = RobotController.new(nil, board)
+    controller = Controller.new(nil, board)
     command = MoveCommand.new(controller)
 
     # Act

@@ -7,7 +7,7 @@ class RobotControllerExecuteTest < Minitest::Test
     # Arrange
     board = RobotSimulator::Board.new(5, 5)
     robot = RobotSimulator::Robot.new(RobotSimulator::Position.new(1, 1), RobotSimulator::Direction::NORTH)
-    controller = RobotSimulator::RobotController.new(robot, board)
+    controller = RobotSimulator::Controller.new(robot, board)
     command = RobotSimulator::Commands::MoveCommand.new(controller)
 
     # Act
@@ -21,7 +21,7 @@ class RobotControllerExecuteTest < Minitest::Test
     # Arrange
     board = RobotSimulator::Board.new(5, 5)
     robot = RobotSimulator::Robot.new(RobotSimulator::Position.new(1, 1), RobotSimulator::Direction::NORTH)
-    controller = RobotSimulator::RobotController.new(robot, board)
+    controller = RobotSimulator::Controller.new(robot, board)
     command = RobotSimulator::Commands::LeftCommand.new(controller)
 
     # Act
@@ -35,7 +35,7 @@ class RobotControllerExecuteTest < Minitest::Test
     # Arrange
     board = RobotSimulator::Board.new(5, 5)
     robot = RobotSimulator::Robot.new(RobotSimulator::Position.new(1, 1), RobotSimulator::Direction::NORTH)
-    controller = RobotSimulator::RobotController.new(robot, board)
+    controller = RobotSimulator::Controller.new(robot, board)
     command = RobotSimulator::Commands::RightCommand.new(controller)
 
     # Act
@@ -49,7 +49,7 @@ class RobotControllerExecuteTest < Minitest::Test
     # Arrange
     board = RobotSimulator::Board.new(5, 5)
     robot = RobotSimulator::Robot.new(RobotSimulator::Position.new(1, 1), RobotSimulator::Direction::NORTH)
-    controller = RobotSimulator::RobotController.new(robot, board)
+    controller = RobotSimulator::Controller.new(robot, board)
     new_robot = RobotSimulator::Robot.new(RobotSimulator::Position.new(2, 2), RobotSimulator::Direction::SOUTH)
 
     # Act

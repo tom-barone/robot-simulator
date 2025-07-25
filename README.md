@@ -11,7 +11,7 @@ docker run --rm -it robot-simulator
 
 ## Architecture
 
-The structure is pretty standard OOP. The only interesting design choice is the Command Pattern to encapsulate each robot instruction as an object, and use of a RobotController to act as the receiver for the commands.
+The structure is pretty standard OOP. The only interesting design choice is the Command Pattern to encapsulate each robot instruction as an object, and use of a Controller to act as the receiver for the commands.
 
 I've gone for immutability where possible, for example when calling `Robot.move()` we'll return a new instance of `Robot` with the updated position, rather than modifying the existing object. Nothing particularly wrong with mutability but all the cool kids are doing functional / immutable programming these days.
 

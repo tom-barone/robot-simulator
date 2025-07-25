@@ -10,7 +10,7 @@ class RightCommandTest < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
-    controller = RobotController.new(robot, board)
+    controller = Controller.new(robot, board)
 
     # Act
     command = RightCommand.new(controller)
@@ -23,7 +23,7 @@ class RightCommandTest < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
-    controller = RobotController.new(robot, board)
+    controller = Controller.new(robot, board)
     command = RightCommand.new(controller)
 
     # Act
@@ -36,7 +36,7 @@ class RightCommandTest < Minitest::Test
   def test_right_command_fails_when_no_robot_placed
     # Arrange
     board = Board.new(5, 5)
-    controller = RobotController.new(nil, board)
+    controller = Controller.new(nil, board)
     command = RightCommand.new(controller)
 
     # Act

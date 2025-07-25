@@ -8,12 +8,12 @@ module RobotSimulator
     def initialize(width, height)
       @board = Board.new(width, height)
       @robot = nil
-      @controller = RobotController.new(@robot, @board)
+      @controller = Controller.new(@robot, @board)
     end
 
     def place_robot(position, direction)
       @robot = Robot.new(position, direction)
-      @controller = RobotController.new(@robot, @board)
+      @controller = Controller.new(@robot, @board)
     end
 
     def move_robot

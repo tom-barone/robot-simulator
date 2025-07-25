@@ -1,5 +1,5 @@
 module RobotSimulator
-  class RobotController
+  class Controller
     attr_reader robot: Robot?
     attr_reader board: Board
 
