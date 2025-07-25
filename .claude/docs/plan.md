@@ -54,50 +54,35 @@ This plan implements the robot simulator using Test-Driven Development, broken i
 
 ### Step 12: Robot Creation
 
-- **Red**: Test Robot can be created without placement
-- **Green**: Implement Robot class with constructor
+- **Red**: Test Robot can be created with position and direction
+- **Green**: Implement Robot class with constructor accepting position and direction
 - **Refactor**: Assess if any improvements needed
 
-### Step 13: Robot Placement
+### Step 13: Robot Placement Check
 
-- **Red**: Test Robot can be placed at position with direction
-- **Green**: Implement place method storing position and direction
-- **Refactor**: Assess if any improvements needed
-- **Red**: Test Robot knows if it's placed
-- **Green**: Implement placed? method
+- **Red**: Test Robot knows if it has valid position and direction
+- **Green**: Implement placed? method checking for nil position/direction
 - **Refactor**: Assess if any improvements needed
 
 ### Step 14: Robot Movement
 
-- **Red**: Test placed Robot can move north
-- **Green**: Implement move method updating position
-- **Refactor**: Assess if any improvements needed
-- **Red**: Test Robot cannot move if not placed
-- **Green**: Add placement check to move method
-- **Refactor**: Assess if any improvements needed
-- **Red**: Test Robot cannot move off board
-- **Green**: Add board boundary check to move method
+- **Red**: Test Robot can move forward in its facing direction
+- **Green**: Implement move method using position.move(direction)
 - **Refactor**: Assess if any improvements needed
 
 ### Step 15: Robot Rotation
 
 - **Red**: Test Robot can turn left
-- **Green**: Implement turn_left method
+- **Green**: Implement turn_left method using direction.turn_left
 - **Refactor**: Assess if any improvements needed
 - **Red**: Test Robot can turn right
-- **Green**: Implement turn_right method
-- **Refactor**: Assess if any improvements needed
-- **Red**: Test unplaced Robot cannot rotate
-- **Green**: Add placement checks to rotation methods
+- **Green**: Implement turn_right method using direction.turn_right
 - **Refactor**: Assess if any improvements needed
 
 ### Step 16: Robot Reporting
 
 - **Red**: Test Robot can report position as "X,Y,DIRECTION"
-- **Green**: Implement report method
-- **Refactor**: Assess if any improvements needed
-- **Red**: Test unplaced Robot cannot report
-- **Green**: Add placement check to report method
+- **Green**: Implement report method returning formatted string
 - **Refactor**: Assess if any improvements needed
 
 ## Phase 5: Commands
@@ -180,29 +165,44 @@ This plan implements the robot simulator using Test-Driven Development, broken i
 
 ### Step 27: RobotController Creation
 
-- **Red**: Test RobotController can be created with robot and board
+- **Red**: Test RobotController can be created with board
 - **Green**: Implement RobotController class with constructor
 - **Refactor**: Assess if any improvements needed
 
 ### Step 28: Controller Robot Placement
 
-- **Red**: Test controller can place robot
-- **Green**: Implement place_robot method
+- **Red**: Test controller can place robot at valid position
+- **Green**: Implement place_robot method creating new robot if position valid
+- **Refactor**: Assess if any improvements needed
+- **Red**: Test controller ignores placement at invalid position
+- **Green**: Add board validation to place_robot method
 - **Refactor**: Assess if any improvements needed
 
 ### Step 29: Controller Robot Operations
 
-- **Red**: Test controller can move robot
-- **Green**: Implement move_robot method
+- **Red**: Test controller can move placed robot
+- **Green**: Implement move_robot method checking robot exists and move valid
 - **Refactor**: Assess if any improvements needed
-- **Red**: Test controller can turn robot left
-- **Green**: Implement turn_robot_left method
+- **Red**: Test controller ignores move when no robot placed
+- **Green**: Add robot existence check to move_robot method
 - **Refactor**: Assess if any improvements needed
-- **Red**: Test controller can turn robot right
-- **Green**: Implement turn_robot_right method
+- **Red**: Test controller can turn placed robot left
+- **Green**: Implement turn_robot_left method checking robot exists
 - **Refactor**: Assess if any improvements needed
-- **Red**: Test controller can report robot state
-- **Green**: Implement report_robot method
+- **Red**: Test controller ignores left turn when no robot placed
+- **Green**: Add robot existence check to turn_robot_left method
+- **Refactor**: Assess if any improvements needed
+- **Red**: Test controller can turn placed robot right
+- **Green**: Implement turn_robot_right method checking robot exists
+- **Refactor**: Assess if any improvements needed
+- **Red**: Test controller ignores right turn when no robot placed
+- **Green**: Add robot existence check to turn_robot_right method
+- **Refactor**: Assess if any improvements needed
+- **Red**: Test controller can report placed robot state
+- **Green**: Implement report_robot method checking robot exists
+- **Refactor**: Assess if any improvements needed
+- **Red**: Test controller ignores report when no robot placed
+- **Green**: Add robot existence check to report_robot method
 - **Refactor**: Assess if any improvements needed
 
 ## Phase 8: CLI Interface
