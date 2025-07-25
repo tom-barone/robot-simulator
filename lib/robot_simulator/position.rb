@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RobotSimulator
-  # Represents a coordinate position on the robot board
+  # Represents a coordinate position on the robot board.
   class Position
     attr_reader :x, :y
 
@@ -12,13 +12,13 @@ module RobotSimulator
 
     def move(direction)
       case direction
-      when 'NORTH'
+      when Direction::NORTH
         Position.new(@x, @y + 1)
-      when 'SOUTH'
+      when Direction::SOUTH
         Position.new(@x, @y - 1)
-      when 'EAST'
+      when Direction::EAST
         Position.new(@x + 1, @y)
-      when 'WEST'
+      when Direction::WEST
         Position.new(@x - 1, @y)
       end
     end

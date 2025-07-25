@@ -1,12 +1,14 @@
 module RobotSimulator
   module Direction
-    NORTH: Symbol
-    SOUTH: Symbol
-    EAST: Symbol
-    WEST: Symbol
-    CLOCKWISE: Array[Symbol]
+    type direction_t = :north | :south | :east | :west
 
-    def self.turn_right: (Symbol direction) -> Symbol
-    def self.turn_left: (Symbol direction) -> Symbol
+    NORTH: :north
+    SOUTH: :south
+    EAST: :east
+    WEST: :west
+    CLOCKWISE: Array[direction_t]
+
+    def self.turn_right: (direction_t direction) -> direction_t
+    def self.turn_left: (direction_t direction) -> direction_t
   end
 end
