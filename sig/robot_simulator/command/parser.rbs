@@ -4,7 +4,7 @@ module RobotSimulator
 	module Command
 		type command_t = Command::Place | Command::Move | Command::Left | Command::Right | Command::Report
 
-		class Parser
+		class StringParser
 			def parse: (String input, Controller controller) -> command_t?
 
 			private

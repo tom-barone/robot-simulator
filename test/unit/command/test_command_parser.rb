@@ -2,14 +2,14 @@
 
 require 'test_helper'
 
-class TestCommandParser < Minitest::Test
+class TestCommandStringParser < Minitest::Test
   include RobotSimulator
 
   def test_command_parser_can_be_created
     # Arrange - no setup needed
 
     # Act
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Assert
     refute_nil parser
@@ -19,7 +19,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act
     command = parser.parse('PLACE 0,0,NORTH', controller)
@@ -32,7 +32,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act
     command = parser.parse('PLACE 0,0,SOUTH', controller)
@@ -45,7 +45,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act
     command = parser.parse('PLACE 0,0,EAST', controller)
@@ -58,7 +58,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act
     command = parser.parse('PLACE 0,0,WEST', controller)
@@ -71,7 +71,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act & Assert
     assert_raises(ArgumentError) do
@@ -83,7 +83,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act & Assert
     assert_raises(ArgumentError) do
@@ -95,7 +95,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act & Assert
     assert_raises(ArgumentError) do
@@ -107,7 +107,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act
     command = parser.parse('MOVE', controller)
@@ -120,7 +120,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act
     command = parser.parse('LEFT', controller)
@@ -133,7 +133,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act
     command = parser.parse('RIGHT', controller)
@@ -146,7 +146,7 @@ class TestCommandParser < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    parser = Command::Parser.new
+    parser = Command::StringParser.new
 
     # Act
     command = parser.parse('REPORT', controller)

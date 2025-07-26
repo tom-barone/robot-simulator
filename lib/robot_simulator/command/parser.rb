@@ -3,7 +3,7 @@
 module RobotSimulator
   module Command
     # Parses strings into command objects
-    class Parser
+    class StringParser
       def parse(input, controller)
         parts = input.strip.split
         command_name = parts[0]
