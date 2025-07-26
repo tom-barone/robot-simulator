@@ -5,15 +5,13 @@ require 'test_helper'
 class PlaceCommandTest < Minitest::Test
   include RobotSimulator
 
-  def test_place_command_can_be_created_with_controller_position_and_direction
+  def test_place_command_can_be_created_with_position_and_direction
     # Arrange
-    board = Board.new(5, 5)
-    controller = Controller.new(nil, board)
     position = Position.new(1, 1)
     direction = Direction::NORTH
 
     # Act
-    command = Command::Place.new(controller, position, direction)
+    command = Command::Place.new(position, direction)
 
     # Assert
     refute_nil command
@@ -25,10 +23,10 @@ class PlaceCommandTest < Minitest::Test
     controller = Controller.new(nil, board)
     position = Position.new(1, 1)
     direction = Direction::NORTH
-    command = Command::Place.new(controller, position, direction)
+    command = Command::Place.new(position, direction)
 
     # Act
-    result = command.execute
+    result = command.execute(controller)
 
     # Assert
     assert_predicate result, :success?
@@ -41,10 +39,10 @@ class PlaceCommandTest < Minitest::Test
     controller = Controller.new(nil, board)
     position = Position.new(5, 5)
     direction = Direction::NORTH
-    command = Command::Place.new(controller, position, direction)
+    command = Command::Place.new(position, direction)
 
     # Act
-    result = command.execute
+    result = command.execute(controller)
 
     # Assert
     assert_predicate result, :error?

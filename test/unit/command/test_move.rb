@@ -5,14 +5,11 @@ require 'test_helper'
 class MoveCommandTest < Minitest::Test
   include RobotSimulator
 
-  def test_move_command_can_be_created_with_controller
+  def test_move_command_can_be_created
     # Arrange
-    board = Board.new(5, 5)
-    robot = Robot.new(Position.new(1, 1), Direction::NORTH)
-    controller = Controller.new(robot, board)
 
     # Act
-    command = Command::Move.new(controller)
+    command = Command::Move.new
 
     # Assert
     refute_nil command
@@ -23,10 +20,10 @@ class MoveCommandTest < Minitest::Test
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
     controller = Controller.new(robot, board)
-    command = Command::Move.new(controller)
+    command = Command::Move.new
 
     # Act
-    result = command.execute
+    result = command.execute(controller)
 
     # Assert
     assert_predicate result, :success?
@@ -37,10 +34,10 @@ class MoveCommandTest < Minitest::Test
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 4), Direction::NORTH)
     controller = Controller.new(robot, board)
-    command = Command::Move.new(controller)
+    command = Command::Move.new
 
     # Act
-    result = command.execute
+    result = command.execute(controller)
 
     # Assert
     assert_predicate result, :error?
@@ -51,10 +48,10 @@ class MoveCommandTest < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    command = Command::Move.new(controller)
+    command = Command::Move.new
 
     # Act
-    result = command.execute
+    result = command.execute(controller)
 
     # Assert
     assert_predicate result, :error?

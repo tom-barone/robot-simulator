@@ -5,14 +5,11 @@ require 'test_helper'
 class ReportCommandTest < Minitest::Test
   include RobotSimulator
 
-  def test_report_command_can_be_created_with_controller
+  def test_report_command_can_be_created
     # Arrange
-    board = Board.new(5, 5)
-    robot = Robot.new(Position.new(1, 1), Direction::NORTH)
-    controller = Controller.new(robot, board)
 
     # Act
-    command = Command::Report.new(controller)
+    command = Command::Report.new
 
     # Assert
     refute_nil command
@@ -23,10 +20,10 @@ class ReportCommandTest < Minitest::Test
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(1, 1), Direction::NORTH)
     controller = Controller.new(robot, board)
-    command = Command::Report.new(controller)
+    command = Command::Report.new
 
     # Act
-    result = command.execute
+    result = command.execute(controller)
 
     # Assert
     assert_predicate result, :success?
@@ -37,10 +34,10 @@ class ReportCommandTest < Minitest::Test
     board = Board.new(5, 5)
     robot = Robot.new(Position.new(2, 3), Direction::EAST)
     controller = Controller.new(robot, board)
-    command = Command::Report.new(controller)
+    command = Command::Report.new
 
     # Act
-    result = command.execute
+    result = command.execute(controller)
 
     # Assert
     assert_equal '2,3,EAST', result.value
@@ -50,10 +47,10 @@ class ReportCommandTest < Minitest::Test
     # Arrange
     board = Board.new(5, 5)
     controller = Controller.new(nil, board)
-    command = Command::Report.new(controller)
+    command = Command::Report.new
 
     # Act
-    result = command.execute
+    result = command.execute(controller)
 
     # Assert
     assert_predicate result, :error?

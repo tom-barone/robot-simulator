@@ -15,7 +15,7 @@ class TestStringParserValid < Minitest::Test
     # Arrange - setup done in setup method
 
     # Act
-    command = @parser.parse('MOVE', @controller)
+    command = @parser.parse('MOVE')
 
     # Assert
     assert_instance_of Command::Move, command
@@ -25,7 +25,7 @@ class TestStringParserValid < Minitest::Test
     # Arrange - setup done in setup method
 
     # Act
-    command = @parser.parse('LEFT', @controller)
+    command = @parser.parse('LEFT')
 
     # Assert
     assert_instance_of Command::Left, command
@@ -35,7 +35,7 @@ class TestStringParserValid < Minitest::Test
     # Arrange - setup done in setup method
 
     # Act
-    command = @parser.parse('RIGHT', @controller)
+    command = @parser.parse('RIGHT')
 
     # Assert
     assert_instance_of Command::Right, command
@@ -45,7 +45,7 @@ class TestStringParserValid < Minitest::Test
     # Arrange - setup done in setup method
 
     # Act
-    command = @parser.parse('REPORT', @controller)
+    command = @parser.parse('REPORT')
 
     # Assert
     assert_instance_of Command::Report, command
@@ -57,7 +57,7 @@ class TestStringParserValid < Minitest::Test
 
     directions.each do |direction|
       # Act
-      command = @parser.parse("PLACE 0,0,#{direction}", @controller)
+      command = @parser.parse("PLACE 0,0,#{direction}")
 
       # Assert
       assert_instance_of Command::Place, command
@@ -70,7 +70,7 @@ class TestStringParserValid < Minitest::Test
     # Arrange - setup done in setup method
 
     # Act
-    command = @parser.parse('  MOVE  ', @controller)
+    command = @parser.parse('  MOVE  ')
 
     # Assert
     assert_instance_of Command::Move, command
@@ -80,7 +80,7 @@ class TestStringParserValid < Minitest::Test
     # Arrange - setup done in setup method
 
     # Act
-    command = @parser.parse('PLACE 2,3,EAST', @controller)
+    command = @parser.parse('PLACE 2,3,EAST')
 
     # Assert
     assert_instance_of Command::Place, command

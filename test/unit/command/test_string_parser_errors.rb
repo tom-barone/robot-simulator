@@ -16,7 +16,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     assert_raises(ArgumentError) do
-      @parser.parse('INVALID', @controller)
+      @parser.parse('INVALID')
     end
   end
 
@@ -25,7 +25,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     assert_raises(ArgumentError) do
-      @parser.parse('', @controller)
+      @parser.parse('')
     end
   end
 
@@ -34,7 +34,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     assert_raises(ArgumentError) do
-      @parser.parse('   ', @controller)
+      @parser.parse('   ')
     end
   end
 
@@ -43,7 +43,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     assert_raises(ArgumentError) do
-      @parser.parse('PLACE', @controller)
+      @parser.parse('PLACE')
     end
   end
 
@@ -52,7 +52,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     assert_raises(ArgumentError) do
-      @parser.parse('PLACE 0,0', @controller)
+      @parser.parse('PLACE 0,0')
     end
   end
 
@@ -61,7 +61,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     assert_raises(ArgumentError) do
-      @parser.parse('PLACE 0,0,NORTH,EXTRA', @controller)
+      @parser.parse('PLACE 0,0,NORTH,EXTRA')
     end
   end
 
@@ -70,7 +70,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     assert_raises(ArgumentError) do
-      @parser.parse('PLACE 0,0,INVALID', @controller)
+      @parser.parse('PLACE 0,0,INVALID')
     end
   end
 
@@ -79,7 +79,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     error = assert_raises(ArgumentError) do
-      @parser.parse('INVALID', @controller)
+      @parser.parse('INVALID')
     end
     assert_match(/Invalid command/, error.message)
   end
@@ -89,7 +89,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     error = assert_raises(ArgumentError) do
-      @parser.parse('PLACE', @controller)
+      @parser.parse('PLACE')
     end
     assert_match(/requires arguments/, error.message)
   end
@@ -99,7 +99,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     error = assert_raises(ArgumentError) do
-      @parser.parse('PLACE 0,0', @controller)
+      @parser.parse('PLACE 0,0')
     end
     assert_match(/X,Y,DIRECTION format/, error.message)
   end
@@ -109,7 +109,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     error = assert_raises(ArgumentError) do
-      @parser.parse('PLACE 0,0,INVALID', @controller)
+      @parser.parse('PLACE 0,0,INVALID')
     end
     assert_match(/Invalid direction/, error.message)
   end
@@ -119,7 +119,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     assert_raises(ArgumentError) do
-      @parser.parse('PLACE 0,x,NORTH', @controller)
+      @parser.parse('PLACE 0,x,NORTH')
     end
   end
 
@@ -128,7 +128,7 @@ class TestStringParserErrors < Minitest::Test
 
     # Act & Assert
     assert_raises(ArgumentError) do
-      @parser.parse('PLACE asdf,0,NORTH', @controller)
+      @parser.parse('PLACE asdf,0,NORTH')
     end
   end
 end

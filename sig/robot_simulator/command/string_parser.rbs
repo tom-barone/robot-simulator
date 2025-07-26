@@ -5,12 +5,12 @@ module RobotSimulator
 		type command_t = Command::Place | Command::Move | Command::Left | Command::Right | Command::Report
 
 		class StringParser
-			def parse: (String input, Controller controller) -> command_t?
+			def parse: (String input) -> command_t?
 
 			private
 
-			def create_command: (String? command_name, String? args, Controller controller) -> command_t
-			def parse_place_command: (String? args, Controller controller) -> Command::Place
+			def create_command: (String? command_name, String? args) -> command_t
+			def parse_place_command: (String? args) -> Command::Place
 			def validate_place_format: (Array[String] parts) -> void
 			def extract_place_components: (Array[String] parts) -> [Integer, Integer, String]
 			def parse_direction: (String direction_str) -> Direction::direction_t

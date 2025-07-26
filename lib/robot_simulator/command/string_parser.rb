@@ -4,28 +4,28 @@ module RobotSimulator
   module Command
     # Parses strings into command objects
     class StringParser
-      def parse(input, controller)
+      def parse(input)
         parts = input.strip.split
         command_name = parts[0]
 
-        create_command(command_name, parts[1], controller)
+        create_command(command_name, parts[1])
       end
 
       private
 
-      def create_command(command_name, args, controller)
+      def create_command(command_name, args)
         case command_name
-        when 'PLACE' then parse_place_command(args, controller)
-        when 'MOVE' then Command::Move.new(controller)
-        when 'LEFT' then Command::Left.new(controller)
-        when 'RIGHT' then Command::Right.new(controller)
-        when 'REPORT' then Command::Report.new(controller)
+        when 'PLACE' then parse_place_command(args)
+        when 'MOVE' then Command::Move.new
+        when 'LEFT' then Command::Left.new
+        when 'RIGHT' then Command::Right.new
+        when 'REPORT' then Command::Report.new
         else
           raise ArgumentError, "Invalid command: #{command_name}"
         end
       end
 
-      def parse_place_command(args, controller)
+      def parse_place_command(args)
         if args.nil? || args.empty?
           raise ArgumentError,
                 'PLACE command requires arguments'
@@ -37,7 +37,7 @@ module RobotSimulator
         x, y, direction_str = extract_place_components(parts)
         position = Position.new(x, y)
         direction = parse_direction(direction_str)
-        Command::Place.new(controller, position, direction)
+        Command::Place.new(position, direction)
       end
 
       def validate_place_format(parts)

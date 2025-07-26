@@ -1,9 +1,7 @@
 module RobotSimulator
   module Command
     class Right
-      def initialize: (Controller controller) -> void
-
-      def execute: () -> Result
+      def execute: (Controller controller) -> Result
     end
   end
 end
