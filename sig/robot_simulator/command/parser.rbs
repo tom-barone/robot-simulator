@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+module RobotSimulator
+	module Command
+		class Parser
+			def parse: (String input, Controller controller) -> Command::Place?
+
+			private
+
+			def parse_place_command: (String args, Controller controller) -> Command::Place
+			def parse_direction: (String direction_str) -> Direction::direction_t
+		end
+	end
+end
