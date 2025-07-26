@@ -13,11 +13,15 @@ module RobotSimulator
       - REPORT
       - EXIT
       You may also use Ctrl-C to quit.
+
     INTRO
 
     def initialize(parser)
       @parser = parser
-      # puts INTRO
+    end
+
+    def show_intro
+      puts INTRO
     end
 
     def read_command

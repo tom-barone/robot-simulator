@@ -8,6 +8,11 @@ module RobotSimulator
     def run: () -> void
     def shutdown: () -> void
 
+    private
+
+    def setup_signal_handling: () -> void
+    def run_command_loop: () -> void
+
     # Legacy methods - will be removed after new architecture is complete
     def place_robot: (Position position, Direction::direction_t direction) -> Command::Result
     def move_robot: () -> Command::Result

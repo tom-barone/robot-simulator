@@ -13,10 +13,20 @@ module RobotSimulator
     end
 
     def run
+      @cli.show_intro
+      setup_signal_handling
+      run_command_loop
+    end
+
+    private
+
+    def setup_signal_handling
       Signal.trap('INT') do
         shutdown
       end
+    end
 
+    def run_command_loop
       loop do
         @cli.read_command do |command|
           shutdown if command.is_a?(Command::Exit)
