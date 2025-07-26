@@ -7,6 +7,7 @@ require_relative 'robot_simulator/position'
 require_relative 'robot_simulator/robot'
 require_relative 'robot_simulator/controller'
 require_relative 'robot_simulator/simulator'
+require_relative 'robot_simulator/cli'
 
 require_relative 'robot_simulator/command/result'
 require_relative 'robot_simulator/command/left'

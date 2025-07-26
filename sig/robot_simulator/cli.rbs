@@ -1,0 +1,7 @@
+module RobotSimulator
+  class CLI
+    def initialize: () -> void
+
+    def run: () { (String) -> String? } -> void
+  end
+end
