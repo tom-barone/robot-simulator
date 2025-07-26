@@ -46,6 +46,8 @@ Do not include any relations or attributes at this point, just the entities them
 Include a list of simple class diagrams that represent the entities and their relationships. Use Mermaid syntax for the diagrams. Only include class attributes and public methods.
 ```
 
+Only include class attributes and public methods.
+
 ## plan.md
 
 We are doing TDD so break down each step to smallest possible change that can be made in the spirit of Red -> Green -> Refactor.
