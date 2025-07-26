@@ -4,6 +4,8 @@ module RobotSimulator
   module Command
     # Command to place robot at specified position and direction
     class Place
+      attr_reader :controller, :position, :direction
+
       def initialize(controller, position, direction)
         @controller = controller
         @position = position

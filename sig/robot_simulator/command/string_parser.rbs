@@ -9,7 +9,10 @@ module RobotSimulator
 
 			private
 
-			def parse_place_command: (String args, Controller controller) -> Command::Place
+			def create_command: (String? command_name, String? args, Controller controller) -> command_t
+			def parse_place_command: (String? args, Controller controller) -> Command::Place
+			def validate_place_format: (Array[String] parts) -> void
+			def extract_place_components: (Array[String] parts) -> [Integer, Integer, String]
 			def parse_direction: (String direction_str) -> Direction::direction_t
 		end
 	end

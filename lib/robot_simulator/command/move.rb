@@ -4,6 +4,8 @@ module RobotSimulator
   module Command
     # Command to move robot forward with boundary validation
     class Move
+      attr_reader :controller
+
       def initialize(controller)
         @controller = controller
       end

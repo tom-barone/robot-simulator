@@ -14,7 +14,7 @@ require_relative 'robot_simulator/command/move'
 require_relative 'robot_simulator/command/place'
 require_relative 'robot_simulator/command/report'
 require_relative 'robot_simulator/command/right'
-require_relative 'robot_simulator/command/parser'
+require_relative 'robot_simulator/command/string_parser'
 
 # Simulation of a robot moving around a board
 module RobotSimulator; end

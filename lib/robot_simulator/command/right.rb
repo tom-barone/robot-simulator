@@ -4,6 +4,8 @@ module RobotSimulator
   module Command
     # Command to turn robot right with robot existence check
     class Right
+      attr_reader :controller
+
       def initialize(controller)
         @controller = controller
       end
