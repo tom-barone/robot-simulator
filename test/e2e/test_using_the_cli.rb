@@ -5,7 +5,7 @@ require 'test_helper'
 
 class UsingTheCLITest < Minitest::Test
   def test_driving_and_exiting_with_commands
-    PTY.spawn('ruby', 'lib/robot_simulator.rb') do |output, input, _pid|
+    spawn_simulator do |output, input, _pid|
       input.puts 'PLACE 0,0,NORTH'
       input.puts 'REPORT'
       input.puts 'EXIT'
@@ -18,7 +18,7 @@ class UsingTheCLITest < Minitest::Test
   end
 
   def test_exiting_with_ctrl_c
-    PTY.spawn('ruby', 'lib/robot_simulator.rb') do |output, input, pid|
+    spawn_simulator do |output, input, pid|
       input.puts 'PLACE 0,0,NORTH'
       input.puts 'REPORT'
       input.flush
@@ -28,6 +28,17 @@ class UsingTheCLITest < Minitest::Test
 
       assert_match(/Welcome to the Robot Simulator!/, output_string)
       assert_match(/Output: 0,0,NORTH/, output_string)
+    end
+  end
+
+  def spawn_simulator
+    PTY.spawn('ruby', 'lib/robot_simulator.rb') do |output, input, pid|
+      # Keeping the PTY file descriptor open prevents
+      # linux from throwing an EIO error
+      # https://stackoverflow.com/a/72976571
+      yield output, input, pid
+    rescue Errno::EIO
+      # Ignore EIO errors that can occur when the PTY is closed
     end
   end
 end
