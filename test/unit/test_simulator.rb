@@ -65,4 +65,30 @@ class SimulatorTest < Minitest::Test
     assert_predicate result, :error?
     assert_nil simulator.controller.robot
   end
+
+  def test_shutdown_prints_newline_and_exits
+    # Arrange
+    simulator = RobotSimulator::Simulator.new
+    StringIO.new
+
+    # Act & Assert
+    assert_output("\n") do
+      assert_raises(SystemExit) { simulator.send(:shutdown) }
+    end
+  end
+
+  def test_signal_handling_setup_traps_int_signal
+    # Arrange
+    simulator = RobotSimulator::Simulator.new
+    trapped_signal = nil
+
+    # Mock Signal.trap to capture what signal is being trapped
+    Signal.stub(:trap, ->(signal) { trapped_signal = signal }) do
+      # Act
+      simulator.send(:setup_signal_handling)
+    end
+
+    # Assert
+    assert_equal 'INT', trapped_signal
+  end
 end

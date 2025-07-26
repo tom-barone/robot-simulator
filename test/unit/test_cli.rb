@@ -6,17 +6,6 @@ require 'stringio'
 class CLITest < Minitest::Test
   include RobotSimulator
 
-  def test_cli_can_be_created_with_parser_dependency
-    # Arrange
-    parser = Command::StringParser.new
-
-    # Act
-    cli = CLI.new(parser)
-
-    # Assert
-    refute_nil cli
-  end
-
   def test_cli_can_read_input_line_and_yield_parsed_command_object
     # Arrange
     parser = Command::StringParser.new
@@ -67,7 +56,7 @@ class CLITest < Minitest::Test
     assert_equal :not_called, yielded_command
   end
 
-  def test_cli_outputs_only_successful_report_command_results_to_stdout
+  def test_cli_outputs_successful_report_command_results_to_stdout
     # Arrange
     parser = Command::StringParser.new
     cli = CLI.new(parser)
@@ -85,20 +74,19 @@ class CLITest < Minitest::Test
     $stdout = original_stdout
   end
 
-  def test_cli_silently_ignores_error_results
+  def test_cli_prints_intro_message
     # Arrange
     parser = Command::StringParser.new
     cli = CLI.new(parser)
-    error_result = Command::Result.error(NoRobotPlacedError)
     original_stdout = $stdout
     output = StringIO.new
 
     # Act
     $stdout = output
-    cli.handle_result(error_result)
+    cli.show_intro
 
     # Assert
-    assert_equal "Error: No robot has been placed on the board\n", output.string
+    assert_match(/Welcome to the Robot Simulator!/, output.string)
   ensure
     $stdout = original_stdout
   end
