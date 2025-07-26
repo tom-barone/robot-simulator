@@ -15,6 +15,7 @@ class ComplexMovementTest < Minitest::Test
 
     # Assert
     assert_equal 4, simulator.controller.robot.position.x
+    assert_equal 4, simulator.controller.robot.position.y
   end
 
   def test_robot_navigation_ends_with_correct_direction
