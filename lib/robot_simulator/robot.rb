@@ -25,5 +25,9 @@ module RobotSimulator
       new_direction = Direction.turn_right(@direction)
       Robot.new(@position, new_direction)
     end
+
+    def report
+      "#{@position.x},#{@position.y},#{@direction.to_s.upcase}"
+    end
   end
 end

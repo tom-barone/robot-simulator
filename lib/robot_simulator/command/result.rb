@@ -5,19 +5,20 @@ module RobotSimulator
     # Represents the result of command execution.
     # Let's us gracefully handle errors if the command fails.
     class Result
-      attr_reader :error
+      attr_reader :error, :value
 
-      def initialize(success, error = nil)
+      def initialize(success, error = nil, value = nil)
         @success = success
         @error = error
+        @value = value
       end
 
-      def self.success
-        new(true, nil)
+      def self.success(value = nil)
+        new(true, nil, value)
       end
 
       def self.error(error_class)
-        new(false, error_class.new)
+        new(false, error_class.new, nil)
       end
 
       def success?

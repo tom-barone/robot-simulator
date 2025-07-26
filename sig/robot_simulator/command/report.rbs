@@ -1,0 +1,9 @@
+module RobotSimulator
+  module Command
+    class Report
+      def initialize: (Controller controller) -> void
+
+      def execute: () -> Result
+    end
+  end
+end

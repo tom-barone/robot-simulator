@@ -12,6 +12,7 @@ require_relative 'robot_simulator/command/result'
 require_relative 'robot_simulator/command/left'
 require_relative 'robot_simulator/command/move'
 require_relative 'robot_simulator/command/place'
+require_relative 'robot_simulator/command/report'
 require_relative 'robot_simulator/command/right'
 
 # Simulation of a robot moving around a board

@@ -12,5 +12,7 @@ module RobotSimulator
     def turn_left: () -> Command::Result
 
     def turn_right: () -> Command::Result
+
+    def report_robot: () -> Command::Result
   end
 end

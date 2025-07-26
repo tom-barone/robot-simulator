@@ -29,5 +29,10 @@ module RobotSimulator
       command = Command::Right.new(@controller)
       command.execute
     end
+
+    def report_robot
+      command = Command::Report.new(@controller)
+      command.execute
+    end
   end
 end

@@ -10,5 +10,7 @@ module RobotSimulator
     def turn_left: () -> Robot
 
     def turn_right: () -> Robot
+
+    def report: () -> String
   end
 end

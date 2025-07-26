@@ -63,4 +63,37 @@ class ResultTest < Minitest::Test
     # Assert
     assert_equal 'RobotSimulator::NoRobotPlacedError', message
   end
+
+  def test_result_success_with_no_value_has_nil_value
+    # Arrange
+    result = Result.success
+
+    # Act
+    value = result.value
+
+    # Assert
+    assert_nil value
+  end
+
+  def test_result_success_with_value_returns_value
+    # Arrange
+    expected_value = '1,2,NORTH'
+
+    # Act
+    result = Result.success(expected_value)
+
+    # Assert
+    assert_equal expected_value, result.value
+  end
+
+  def test_result_error_has_nil_value
+    # Arrange
+    result = Result.error(NoRobotPlacedError)
+
+    # Act
+    value = result.value
+
+    # Assert
+    assert_nil value
+  end
 end

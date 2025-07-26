@@ -2,10 +2,11 @@ module RobotSimulator
   module Command
     class Result
       attr_reader error: Error?
+      attr_reader value: String?
 
-      def initialize: (bool success, Error? error) -> void
+      def initialize: (bool success, Error? error, String? value) -> void
 
-      def self.success: () -> Result
+      def self.success: (?String? value) -> Result
 
       def self.error: (singleton(Error) error_class) -> Result
 
