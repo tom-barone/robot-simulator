@@ -14,7 +14,7 @@ module RobotSimulator
       current_index = CLOCKWISE.index(direction)
       unless current_index
         raise ArgumentError,
-              "Invalid direction: #{direction}"
+              "Invalid direction '#{direction}'"
       end
 
       CLOCKWISE[(current_index + 1) % 4]
@@ -24,7 +24,7 @@ module RobotSimulator
       current_index = CLOCKWISE.index(direction)
       unless current_index
         raise ArgumentError,
-              "Invalid direction: #{direction}"
+              "Invalid direction '#{direction}'"
       end
 
       CLOCKWISE[(current_index - 1) % 4]

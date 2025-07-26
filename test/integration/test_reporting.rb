@@ -10,10 +10,12 @@ class ReportingTest < Minitest::Test
     simulator = Simulator.new(5, 5)
     position = Position.new(2, 3)
     direction = Direction::WEST
-    simulator.place_robot(position, direction)
+    place_command = Command::Place.new(position, direction)
+    place_command.execute(simulator.controller)
 
     # Act
-    result = simulator.report_robot
+    report_command = Command::Report.new
+    result = report_command.execute(simulator.controller)
 
     # Assert
     assert_predicate result, :success?
@@ -25,7 +27,8 @@ class ReportingTest < Minitest::Test
     simulator = Simulator.new(5, 5)
 
     # Act
-    result = simulator.report_robot
+    report_command = Command::Report.new
+    result = report_command.execute(simulator.controller)
 
     # Assert
     assert_predicate result, :error?
@@ -35,17 +38,33 @@ class ReportingTest < Minitest::Test
   def test_report_robot_returns_correct_value_after_complex_movement
     # Arrange
     simulator = Simulator.new(5, 5)
-    simulator.place_robot(Position.new(1, 1), Direction::NORTH)
+    place_robot_at_start_position(simulator)
 
     # Act - Execute complex movement sequence
-    simulator.move_robot      # (1, 2, NORTH)
-    simulator.turn_right      # (1, 2, EAST)
-    simulator.move_robot      # (2, 2, EAST)
-    simulator.turn_left       # (2, 2, NORTH)
-    result = simulator.report_robot
+    execute_complex_movement_sequence(simulator)
+    result = report_robot_position(simulator)
 
     # Assert
     assert_predicate result, :success?
     assert_equal '2,2,NORTH', result.value
+  end
+
+  private
+
+  def place_robot_at_start_position(simulator)
+    place_command = Command::Place.new(Position.new(1, 1), Direction::NORTH)
+    place_command.execute(simulator.controller)
+  end
+
+  def execute_complex_movement_sequence(simulator)
+    Command::Move.new.execute(simulator.controller)      # (1, 2, NORTH)
+    Command::Right.new.execute(simulator.controller)     # (1, 2, EAST)
+    Command::Move.new.execute(simulator.controller)      # (2, 2, EAST)
+    Command::Left.new.execute(simulator.controller)      # (2, 2, NORTH)
+  end
+
+  def report_robot_position(simulator)
+    report_command = Command::Report.new
+    report_command.execute(simulator.controller)
   end
 end

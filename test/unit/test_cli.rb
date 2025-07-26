@@ -17,19 +17,20 @@ class CLITest < Minitest::Test
     refute_nil cli
   end
 
-  def test_cli_can_read_input_line_and_return_parsed_command_object
+  def test_cli_can_read_input_line_and_yield_parsed_command_object
     # Arrange
     parser = Command::StringParser.new
     cli = CLI.new(parser)
     input = StringIO.new("PLACE 1,2,NORTH\n")
     original_stdin = $stdin
+    yielded_command = nil
 
     # Act
     $stdin = input
-    command = cli.read_command
+    cli.read_command { |cmd| yielded_command = cmd }
 
     # Assert
-    assert_instance_of Command::Place, command
+    assert_instance_of Command::Place, yielded_command
   ensure
     $stdin = original_stdin
   end
@@ -38,26 +39,32 @@ class CLITest < Minitest::Test
     # Arrange
     mock_parser = Minitest::Mock.new
     cli = CLI.new(mock_parser)
-    expected_command = Command::Place.new(Position.new(1, 2), Direction::NORTH)
+    expected_command = create_place_command
     mock_parser.expect(:parse, expected_command, ['PLACE 1,2,NORTH'])
+    yielded_command = nil
 
     # Act
-    with_input("  PLACE 1,2,NORTH  \n") { cli.read_command }
+    with_input("  PLACE 1,2,NORTH  \n") do
+      cli.read_command { |cmd| yielded_command = cmd }
+    end
 
     # Assert
     mock_parser.verify
+
+    assert_equal expected_command, yielded_command
   end
 
-  def test_cli_returns_nil_when_input_is_nil
+  def test_cli_handles_nil_input_gracefully
     # Arrange
     parser = Command::StringParser.new
     cli = CLI.new(parser)
+    yielded_command = :not_called
 
     # Act
-    result = with_input('') { cli.read_command }
+    with_input('') { cli.read_command { |cmd| yielded_command = cmd } }
 
     # Assert
-    assert_nil result
+    assert_equal :not_called, yielded_command
   end
 
   def test_cli_outputs_only_successful_report_command_results_to_stdout
@@ -73,12 +80,12 @@ class CLITest < Minitest::Test
     cli.handle_result(successful_result)
 
     # Assert
-    assert_equal "1,2,NORTH\n", output.string
+    assert_equal "Output: 1,2,NORTH\n", output.string
   ensure
     $stdout = original_stdout
   end
 
-  def test_cli_does_not_output_error_results
+  def test_cli_silently_ignores_error_results
     # Arrange
     parser = Command::StringParser.new
     cli = CLI.new(parser)
@@ -91,12 +98,16 @@ class CLITest < Minitest::Test
     cli.handle_result(error_result)
 
     # Assert
-    assert_equal '', output.string
+    assert_equal "Error: No robot has been placed on the board\n", output.string
   ensure
     $stdout = original_stdout
   end
 
   private
+
+  def create_place_command
+    Command::Place.new(Position.new(1, 2), Direction::NORTH)
+  end
 
   def with_input(input_string)
     original_stdin = $stdin

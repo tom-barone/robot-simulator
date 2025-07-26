@@ -1,0 +1,7 @@
+module RobotSimulator
+  module Command
+    class Exit
+      def execute: (Controller controller) -> Result
+    end
+  end
+end

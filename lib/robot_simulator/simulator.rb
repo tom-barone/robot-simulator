@@ -13,42 +13,24 @@ module RobotSimulator
     end
 
     def run
-      loop do
-        command = @cli.read_command
-        break if command.nil?
+      Signal.trap('INT') do
+        shutdown
+      end
 
-        result = command.execute(@controller)
-        @cli.handle_result(result)
-      rescue StandardError
-        # Silent error handling - continue processing without output
-        next
+      loop do
+        @cli.read_command do |command|
+          shutdown if command.is_a?(Command::Exit)
+          result = command.execute(@controller)
+
+          @cli.handle_result(result)
+        end
       end
     end
 
-    # Legacy methods - will be removed after new architecture is complete
-    def place_robot(position, direction)
-      command = Command::Place.new(position, direction)
-      command.execute(@controller)
-    end
-
-    def move_robot
-      command = Command::Move.new
-      command.execute(@controller)
-    end
-
-    def turn_left
-      command = Command::Left.new
-      command.execute(@controller)
-    end
-
-    def turn_right
-      command = Command::Right.new
-      command.execute(@controller)
-    end
-
-    def report_robot
-      command = Command::Report.new
-      command.execute(@controller)
+    # Unceremoniously exit the simulator
+    def shutdown
+      puts "\n"
+      exit(0)
     end
   end
 end

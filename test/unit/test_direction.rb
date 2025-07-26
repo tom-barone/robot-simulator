@@ -121,7 +121,7 @@ class DirectionTest < Minitest::Test
     error = assert_raises(ArgumentError) do
       Direction.turn_right(invalid_direction)
     end
-    assert_includes error.message, 'Invalid direction: bad_direction'
+    assert_includes error.message, "Invalid direction 'bad_direction'"
   end
 
   def test_turn_left_error_message_includes_invalid_direction
@@ -132,6 +132,6 @@ class DirectionTest < Minitest::Test
     error = assert_raises(ArgumentError) do
       Direction.turn_left(invalid_direction)
     end
-    assert_includes error.message, 'Invalid direction: bad_direction'
+    assert_includes error.message, "Invalid direction 'bad_direction'"
   end
 end

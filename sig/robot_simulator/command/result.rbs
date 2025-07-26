@@ -1,14 +1,14 @@
 module RobotSimulator
   module Command
     class Result
-      attr_reader error: Error?
+      attr_reader error: StandardError?
       attr_reader value: Object?
 
-      def initialize: (?error: Error?, ?value: Object?) -> void
+      def initialize: (?error: StandardError?, ?value: Object?) -> void
 
       def self.success: (?Object? value) -> Result
 
-      def self.error: (singleton(Error) error_class) -> Result
+      def self.error: (singleton(StandardError) | StandardError err) -> Result
 
       def success?: () -> bool
 

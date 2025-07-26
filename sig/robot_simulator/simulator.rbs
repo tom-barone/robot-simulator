@@ -6,6 +6,7 @@ module RobotSimulator
 
     def initialize: (?Integer width, ?Integer height) -> void
     def run: () -> void
+    def shutdown: () -> void
 
     # Legacy methods - will be removed after new architecture is complete
     def place_robot: (Position position, Direction::direction_t direction) -> Command::Result

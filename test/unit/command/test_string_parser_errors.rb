@@ -101,7 +101,7 @@ class TestStringParserErrors < Minitest::Test
     error = assert_raises(ArgumentError) do
       @parser.parse('PLACE 0,0')
     end
-    assert_match(/X,Y,DIRECTION format/, error.message)
+    assert_match(/format X,Y,DIRECTION/, error.message)
   end
 
   def test_place_invalid_direction_error_message_is_descriptive

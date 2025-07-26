@@ -16,8 +16,12 @@ module RobotSimulator
         new(value: value)
       end
 
-      def self.error(error_class)
-        new(error: error_class.new)
+      def self.error(err)
+        if err.is_a?(Class)
+          new(error: err.new)
+        else
+          new(error: err)
+        end
       end
 
       def success?

@@ -2,10 +2,10 @@
 
 module RobotSimulator
 	module Command
-		type command_t = Command::Place | Command::Move | Command::Left | Command::Right | Command::Report
+		type command_t = Command::Place | Command::Move | Command::Left | Command::Right | Command::Report | Command::Exit
 
 		class StringParser
-			def parse: (String input) -> command_t?
+			def parse: (String input) -> command_t
 
 			private
 

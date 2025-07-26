@@ -61,7 +61,7 @@ class ResultTest < Minitest::Test
     message = result.error_message
 
     # Assert
-    assert_equal 'RobotSimulator::NoRobotPlacedError', message
+    assert_equal 'No robot has been placed on the board', message
   end
 
   def test_result_success_with_no_value_has_nil_value

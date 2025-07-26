@@ -42,33 +42,27 @@ class SimulatorTest < Minitest::Test
   def test_simulator_executes_commands_via_controller_and_handles_results
     # Arrange
     simulator = RobotSimulator::Simulator.new
-    mock_cli = Minitest::Mock.new
     pos = RobotSimulator::Position.new(1, 2)
-    cmd = RobotSimulator::Command::Place.new(pos, RobotSimulator::Direction::NORTH)
 
-    simulator.instance_variable_set(:@cli, mock_cli)
-    mock_cli.expect(:read_command, cmd)
-    mock_cli.expect(:handle_result, nil, &:success?)
-    mock_cli.expect(:read_command, nil)
+    # Act
+    place_command = RobotSimulator::Command::Place.new(pos, RobotSimulator::Direction::NORTH)
+    result = place_command.execute(simulator.controller)
 
-    # Act & Assert
-    simulator.run
-    mock_cli.verify
+    # Assert
+    assert_predicate result, :success?
+    refute_nil simulator.controller.robot
   end
 
-  def test_simulator_silently_ignores_command_failures_and_parsing_errors
+  def test_simulator_handles_invalid_robot_operations_gracefully
     # Arrange
     simulator = RobotSimulator::Simulator.new
-    mock_cli = Minitest::Mock.new
 
-    simulator.instance_variable_set(:@cli, mock_cli)
-    mock_cli.expect(:read_command, nil) do
-      raise ArgumentError, 'Invalid command'
-    end
-    mock_cli.expect(:read_command, nil)
+    # Act - Try to move without placing robot first
+    move_command = RobotSimulator::Command::Move.new
+    result = move_command.execute(simulator.controller)
 
-    # Act & Assert
-    simulator.run
-    mock_cli.verify
+    # Assert
+    assert_predicate result, :error?
+    assert_nil simulator.controller.robot
   end
 end

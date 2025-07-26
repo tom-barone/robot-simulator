@@ -10,6 +10,7 @@ require_relative 'robot_simulator/simulator'
 require_relative 'robot_simulator/cli'
 
 require_relative 'robot_simulator/command/result'
+require_relative 'robot_simulator/command/exit'
 require_relative 'robot_simulator/command/left'
 require_relative 'robot_simulator/command/move'
 require_relative 'robot_simulator/command/place'

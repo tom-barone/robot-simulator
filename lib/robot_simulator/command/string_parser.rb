@@ -20,15 +20,16 @@ module RobotSimulator
         when 'LEFT' then Command::Left.new
         when 'RIGHT' then Command::Right.new
         when 'REPORT' then Command::Report.new
+        when 'EXIT' then Command::Exit.new
         else
-          raise ArgumentError, "Invalid command: #{command_name}"
+          raise ArgumentError, "Invalid command '#{command_name}'"
         end
       end
 
       def parse_place_command(args)
         if args.nil? || args.empty?
           raise ArgumentError,
-                'PLACE command requires arguments'
+                'Invalid command: PLACE command requires arguments'
         end
 
         parts = args.split(',')
@@ -43,7 +44,8 @@ module RobotSimulator
       def validate_place_format(parts)
         return if parts.length == 3
 
-        raise ArgumentError, 'PLACE command requires X,Y,DIRECTION format'
+        raise ArgumentError,
+              'Invalid command: PLACE command requires the format X,Y,DIRECTION'
       end
 
       def extract_place_components(parts)
@@ -60,7 +62,7 @@ module RobotSimulator
         when 'EAST' then Direction::EAST
         when 'WEST' then Direction::WEST
         else
-          raise ArgumentError, "Invalid direction: #{direction_str}"
+          raise ArgumentError, "Invalid direction '#{direction_str}'"
         end
       end
     end
