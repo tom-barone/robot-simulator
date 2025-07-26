@@ -1,7 +1,9 @@
 module RobotSimulator
   class CLI
-    def initialize: () -> void
+    @parser: Command::StringParser
 
-    def run: () { (String) -> String? } -> void
+    def initialize: (Command::StringParser parser) -> void
+    def read_command: () -> Command::command_t?
+    def handle_result: (Command::Result result) -> void
   end
 end

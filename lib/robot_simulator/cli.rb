@@ -1,17 +1,21 @@
 # frozen_string_literal: true
 
 module RobotSimulator
-  # Pure I/O handler for command-line interface
+  # Reads commands from standard input and displays results to standard output.
   class CLI
-    def initialize
-      # No dependencies needed for I/O operations
+    def initialize(parser)
+      @parser = parser
     end
 
-    def run(&block)
-      $stdin.each_line do |line|
-        output = block.call(line.strip)
-        puts output if output
-      end
+    def read_command
+      input = $stdin.gets
+      return if input.nil?
+
+      @parser.parse(input.strip)
+    end
+
+    def handle_result(result)
+      puts result.value if result.success?
     end
   end
 end
