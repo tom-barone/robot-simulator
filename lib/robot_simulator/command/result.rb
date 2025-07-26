@@ -7,26 +7,25 @@ module RobotSimulator
     class Result
       attr_reader :error, :value
 
-      def initialize(success, error = nil, value = nil)
-        @success = success
+      def initialize(error: nil, value: nil)
         @error = error
         @value = value
       end
 
       def self.success(value = nil)
-        new(true, nil, value)
+        new(value: value)
       end
 
       def self.error(error_class)
-        new(false, error_class.new, nil)
+        new(error: error_class.new)
       end
 
       def success?
-        @success
+        @error.nil?
       end
 
       def error?
-        !@success
+        !@error.nil?
       end
 
       def error_message
