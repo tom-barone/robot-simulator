@@ -5,16 +5,6 @@ require 'test_helper'
 class LeftCommandTest < Minitest::Test
   include RobotSimulator
 
-  def test_left_command_can_be_created
-    # Arrange
-
-    # Act
-    command = Command::Left.new
-
-    # Assert
-    refute_nil command
-  end
-
   def test_left_command_executes_successfully_when_robot_is_placed
     # Arrange
     board = Board.new(5, 5)
@@ -27,6 +17,7 @@ class LeftCommandTest < Minitest::Test
 
     # Assert
     assert_predicate result, :success?
+    assert_equal Direction::WEST, controller.robot.direction
   end
 
   def test_left_command_fails_when_no_robot_placed

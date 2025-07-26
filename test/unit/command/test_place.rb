@@ -5,18 +5,6 @@ require 'test_helper'
 class PlaceCommandTest < Minitest::Test
   include RobotSimulator
 
-  def test_place_command_can_be_created_with_position_and_direction
-    # Arrange
-    position = Position.new(1, 1)
-    direction = Direction::NORTH
-
-    # Act
-    command = Command::Place.new(position, direction)
-
-    # Assert
-    refute_nil command
-  end
-
   def test_place_command_executes_successfully_when_position_is_valid
     # Arrange
     board = Board.new(5, 5)

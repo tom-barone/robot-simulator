@@ -96,4 +96,16 @@ class ResultTest < Minitest::Test
     # Assert
     assert_nil value
   end
+
+  def test_result_can_be_created_with_error_instance
+    # Arrange
+    error_instance = NoRobotPlacedError.new
+
+    # Act
+    result = Result.error(error_instance)
+
+    # Assert
+    assert_predicate result, :error?
+    assert_equal error_instance, result.error
+  end
 end

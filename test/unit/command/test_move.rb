@@ -5,16 +5,6 @@ require 'test_helper'
 class MoveCommandTest < Minitest::Test
   include RobotSimulator
 
-  def test_move_command_can_be_created
-    # Arrange
-
-    # Act
-    command = Command::Move.new
-
-    # Assert
-    refute_nil command
-  end
-
   def test_move_command_executes_successfully_when_move_is_valid
     # Arrange
     board = Board.new(5, 5)
@@ -27,6 +17,7 @@ class MoveCommandTest < Minitest::Test
 
     # Assert
     assert_predicate result, :success?
+    assert_equal Position.new(1, 2), controller.robot.position
   end
 
   def test_move_command_fails_when_robot_would_fall_off_table
