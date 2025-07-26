@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: "Checkout code"
         uses: "actions/checkout@v4"
+        with:
+          # Required for dokku push
+          fetch-depth: 0
 
       - name: "Setup Ruby"
         uses: ruby/setup-ruby@v1
@@ -49,3 +52,11 @@ jobs:
         with:
           name: "test-coverage"
           path: "coverage"
+
+      - name: "Deploy docs"
+        uses: "dokku/github-action@master"
+        with:
+          branch: "main"
+          git_remote_url: "ssh://dokku@robot-simulator.tombarone.net:22/robot-simulator.tombarone.net"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          git_push_flags: "--force"
