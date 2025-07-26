@@ -6,7 +6,7 @@
 - X and Y coordinates should be integers from 0-4 (inclusive).
 - F (facing direction) must be exactly NORTH, SOUTH, EAST, or WEST.
 - Origin (0,0) is at the SOUTH WEST corner of the table.
-- Invalid placements outside table bounds should warn the user and will be ignored.
+- Invalid placements outside table bounds should warn the user and do nothing.
 - Robot is not placed when the application begins.
 - A new PLACE command overrides any previous placement.
 
@@ -14,16 +14,16 @@
 - NORTH increases Y coordinate by 1, SOUTH decreases Y coordinate by 1.
 - EAST increases X coordinate by 1, WEST decreases X coordinate by 1.
 - Robot position updates only for valid moves that keep robot within bounds.
-- Movement that would cause the robot to fall off the table should warn the user and will be ignored.
+- Movement that would cause the robot to fall off the table should warn the user and do nothing.
 
 - LEFT command rotates robot 90 degrees counter-clockwise without changing position.
 - RIGHT command rotates robot 90 degrees clockwise without changing position.
 - Rotation is always valid when robot is placed, regardless of robot position.
-- If a robot is not placed, rotation commands should warn the user and will be ignored.
+- If a robot is not placed, rotation commands should warn the user and will be do nothing.
 
 - REPORT command outputs current position and facing direction as "X,Y,DIRECTION".
 - Output format must be exact: integers for coordinates, cardinal direction name.
-- If a robot is not placed, report commands should warn the user and will be ignored.
+- If a robot is not placed, report commands should warn the user and will be do nothing.
 - Multiple REPORT commands are allowed during execution.
 
 - First valid command that affects robot state must be PLACE.
@@ -34,7 +34,7 @@
 - Commands are case-sensitive and must match exact format.
 - Commands must be on separate lines.
 - Leading and trailing whitespace on command lines should be trimmed before processing.
-- Invalid command formats should warn the user and will be ignored.
+- Invalid command formats should warn the user and do nothing.
 
 - PLACE X,Y,F (where X,Y are integers 0-4, F is NORTH/SOUTH/EAST/WEST)
 - MOVE (no parameters, command name only)
@@ -48,14 +48,12 @@
 - Application must start in a clean state each time it is executed.
 
 - REPORT output: "X,Y,DIRECTION" with no spaces (e.g., "0,1,NORTH")
-- No output for commands other than REPORT.
-- No error messages or acknowledgments for any commands.
 - Output must be written to standard output (stdout).
+- Warnings for invalid commands or operations should be clear and concise and printed to standard output.
 
 ## Non-Functional Requirements
 
 - Commands should be processed and executed immediately.
-- No multithreading or asynchronous processing is required.
 - REPORT output must appear immediately after command processing.
 - System should be performant and respond to commands without delay longer than a few milliseconds.
 
@@ -84,3 +82,4 @@
 - Graphical user interface or visual representation of the robot or board.
 - Command history / undo functionality.
 - Batch processing of commands.
+- Multithreading or asynchronous processing.

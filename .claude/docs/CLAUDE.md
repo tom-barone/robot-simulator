@@ -48,6 +48,8 @@ Include a list of simple class diagrams that represent the entities and their re
 
 Only include class attributes and public methods.
 
+Keep the design document as short as possible while still being clear and understandable.
+
 ## plan.md
 
 We are doing TDD so break down each step to smallest possible change that can be made in the spirit of Red -> Green -> Refactor.
