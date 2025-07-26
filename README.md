@@ -22,8 +22,8 @@ docker run --rm -it robot-simulator
   - Runs the Steep/RBS type checker.
   - Runs the test suite with Minitest.
   - Generates a code coverage report with SimpleCov (downloadable from the CI artifacts).
-  - Generates documentation with YARD. (downloadable from the CI artifacts).
-  - Deploys the YARD docs [here](https://robot-simulator.tombarone.net/).
+  - Generates documentation with rdoc. (downloadable from the CI artifacts).
+  - Deploys the rdoc docs [here](https://robot-simulator.tombarone.net/).
     - Hidden behind [`oauth2-proxy`](https://oauth2-proxy.github.io/oauth2-proxy/) for authentication, with only select GitHub users allowed access.
 
 See the `Rakefile` for a full list of available tasks.
@@ -40,7 +40,7 @@ I renamed `Table` to `Board` because `Table` is an overloaded term and easily co
 
 This is definitely overkill.
 
-We want the YARD docs to be private, so we use `oauth2-proxy` to authenticate users with GitHub first. We can select which GitHub users by username to allow access to the site. I'm hosting this on a dev mini PC I have running out of my house that is handy for prototyping and testing stuff like this.
+We want the docs to be private, so we use `oauth2-proxy` to authenticate users with GitHub first. We can select which GitHub users by username to allow access to the site. I'm hosting this on a dev mini PC I have running out of my house that is handy for prototyping and testing stuff like this.
 
 The proxy and website are setup using [Dokku](https://dokku.com/):
 

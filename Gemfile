@@ -32,8 +32,8 @@ gem 'steep', '~> 1.0'
 # Coverage reports [https://github.com/simplecov-ruby/simplecov]
 gem 'simplecov', require: false
 
-# Doc generation [https://yardoc.org]
-gem 'yard', '~> 0.9.37'
+# Doc generation [https://github.com/ruby/rdoc]
+gem 'rdoc'
 
 # Interactive Ruby shell for experimenting [https://github.com/ruby/irb]
 gem 'irb'

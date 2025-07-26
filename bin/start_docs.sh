@@ -23,7 +23,6 @@ fi
 # https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview#generating-a-cookie-secret
 cookie_secret="$(dd if=/dev/urandom bs=32 count=1 2>/dev/null | base64 | tr -d -- '\n' | tr -- '+/' '-_')"
 
-# Generate the YARD docs
 bundle exec rake docs
 
 # Start the proxy on $PORT and redirect traffic to the docs directory

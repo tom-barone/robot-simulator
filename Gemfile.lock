@@ -128,7 +128,6 @@ GEM
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
     uri (1.0.3)
-    yard (0.9.37)
 
 PLATFORMS
   arm64-darwin-24
@@ -139,12 +138,12 @@ DEPENDENCIES
   minitest (~> 5.16)
   rake (~> 13.0)
   rbs (~> 3.0)
+  rdoc
   rubocop (~> 1.79)
   rubocop-minitest
   rubocop-rake
   simplecov
   steep (~> 1.0)
-  yard (~> 0.9.37)
 
 RUBY VERSION
    ruby 3.4.4p34

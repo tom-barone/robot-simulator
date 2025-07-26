@@ -7,7 +7,6 @@
 # I like these files as a "oh here are the common commands I can run" reference
 
 require 'rubocop/rake_task'
-require 'yard'
 require 'minitest/test_task'
 
 CHECKS = %i[format lint types test docs].freeze
@@ -31,8 +30,7 @@ end
 
 desc 'Generate documentation'
 task :docs do
-  YARD::Rake::YardocTask.new
-  Rake::Task['yard'].invoke
+  sh 'bundle exec rdoc lib README.md --main README.md --output doc'
 end
 
 desc 'Run type checkers'
@@ -48,3 +46,9 @@ end
 
 desc 'Run all pre-commit checks'
 task precommit: CHECKS + [:docker]
+
+desc 'Clean up generated files'
+task :clean do
+  sh 'rm -rf doc'
+  sh 'rm -rf coverage'
+end
