@@ -12,6 +12,9 @@ module RobotSimulator
       @cli = CLI.new(@parser)
     end
 
+    # These methods are covered in the E2E tests using a spawned process,
+    # so simplecov doesn't pick them up as covered.
+    # :nocov:
     def run
       @cli.show_intro
       setup_signal_handling
@@ -36,6 +39,7 @@ module RobotSimulator
         end
       end
     end
+    # :nocov:
 
     # Unceremoniously exit the simulator
     def shutdown
