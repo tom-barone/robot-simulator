@@ -1,18 +1,17 @@
 module RobotSimulator
   class Simulator
-    attr_reader board: Board
-    attr_reader robot: Robot?
+    attr_reader controller: Controller
+    attr_reader parser: Command::StringParser
+    attr_reader cli: CLI
 
-    def initialize: (Integer width, Integer height) -> void
+    def initialize: (?Integer width, ?Integer height) -> void
+    def run: () -> void
 
-    def place_robot: (Position position, Direction::direction_t direction) -> void
-
+    # Legacy methods - will be removed after new architecture is complete
+    def place_robot: (Position position, Direction::direction_t direction) -> Command::Result
     def move_robot: () -> Command::Result
-
     def turn_left: () -> Command::Result
-
     def turn_right: () -> Command::Result
-
     def report_robot: () -> Command::Result
   end
 end

@@ -19,3 +19,6 @@ require_relative 'robot_simulator/command/string_parser'
 
 # Simulation of a robot moving around a board
 module RobotSimulator; end
+
+# Run the simulator if this file is executed directly
+RobotSimulator::Simulator.new.run if __FILE__ == $PROGRAM_NAME
