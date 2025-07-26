@@ -102,4 +102,56 @@ class TestCommandParser < Minitest::Test
       parser.parse('PLACE 00000', controller)
     end
   end
+
+  def test_parser_creates_move_command_from_move_string
+    # Arrange
+    board = Board.new(5, 5)
+    controller = Controller.new(nil, board)
+    parser = Command::Parser.new
+
+    # Act
+    command = parser.parse('MOVE', controller)
+
+    # Assert
+    assert_instance_of Command::Move, command
+  end
+
+  def test_parser_creates_left_command_from_left_string
+    # Arrange
+    board = Board.new(5, 5)
+    controller = Controller.new(nil, board)
+    parser = Command::Parser.new
+
+    # Act
+    command = parser.parse('LEFT', controller)
+
+    # Assert
+    assert_instance_of Command::Left, command
+  end
+
+  def test_parser_creates_right_command_from_right_string
+    # Arrange
+    board = Board.new(5, 5)
+    controller = Controller.new(nil, board)
+    parser = Command::Parser.new
+
+    # Act
+    command = parser.parse('RIGHT', controller)
+
+    # Assert
+    assert_instance_of Command::Right, command
+  end
+
+  def test_parser_creates_report_command_from_report_string
+    # Arrange
+    board = Board.new(5, 5)
+    controller = Controller.new(nil, board)
+    parser = Command::Parser.new
+
+    # Act
+    command = parser.parse('REPORT', controller)
+
+    # Assert
+    assert_instance_of Command::Report, command
+  end
 end

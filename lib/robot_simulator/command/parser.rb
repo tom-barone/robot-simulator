@@ -9,8 +9,11 @@ module RobotSimulator
         command_name = parts[0]
 
         case command_name
-        when 'PLACE'
-          parse_place_command(parts[1], controller)
+        when 'PLACE' then parse_place_command(parts[1], controller)
+        when 'MOVE' then Command::Move.new(controller)
+        when 'LEFT' then Command::Left.new(controller)
+        when 'RIGHT' then Command::Right.new(controller)
+        when 'REPORT' then Command::Report.new(controller)
         end
       end
 
