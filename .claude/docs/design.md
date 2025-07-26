@@ -80,12 +80,8 @@ classDiagram
 
     class Simulator {
         +controller: Controller
+        +cli: CLI
         +initialize(width: Integer, height: Integer): Simulator
-        +place_robot(position: Position, direction: Symbol): Result
-        +move_robot(): Result
-        +turn_left(): Result
-        +turn_right(): Result
-        +report_robot(): Result
     }
 
     class CommandResult {
@@ -235,14 +231,6 @@ A command-line interface class that:
 - Outputs only REPORT command results to stdout
 - Continues processing until terminated with Ctrl-C
 - Silently ignores invalid commands and errors (no error messages to stdout)
-
-### Application Class
-A main entry point that:
-- Creates a 5x5 Board instance
-- Creates a Controller with no initial robot (nil) and the board
-- Creates a StringParser instance
-- Creates a CLI instance with the controller and parser
-- Starts the CLI command processing loop
 
 ### Main Executable
 A bin/robot executable script that:

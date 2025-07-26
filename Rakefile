@@ -40,7 +40,8 @@ end
 
 desc 'Make sure checks pass in Docker'
 task :docker do
-  sh 'docker build -t robot-simulator .'
+  # Quiet to avoid stuffing too much output into Claude Code
+  sh 'docker build --quiet -t robot-simulator .'
   sh "docker run --rm robot-simulator rake #{CHECKS.join(' ')}"
 end
 
