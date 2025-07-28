@@ -70,7 +70,7 @@ These agents behave well when given a constrained environment to work in:
 
 I was inspired a lot by this guy's [CLAUDE.md](https://github.com/citypaul/.dotfiles/blob/main/claude/.claude/CLAUDE.md).
 
-A result of these new tools is we reading much more code than usual. I find Ruby to be especially well suited to this compared to other languages, since it's easy to visually parse and read quickly.
+While using Claude Code, we end up reading much more code than usual. I find Ruby to be especially well suited to this compared to other languages, since it's easy to visually parse and read quickly.
 
 We maintain a set of 3 constantly evolving documents:
 
@@ -85,6 +85,4 @@ Each change flows through these documents in order. Supposing we have a complete
 3. Write a new plan to implement the change.
 4. Implement the change using TDD.
 
-I try not to be too demanding about how these docs are written, since they're not really for human consumption.
-
-Another thing I've found is that so long as the design / plan docs are 80% accurate, thats good enough to get started. It's easy to fall into the trap of trying to tune that last 20% which takes ages and ends up being unnecessary. The finer details will flesh themselves out as we implement the code step by step.
+I try not to be too demanding about how these docs are written, since they're not really for human consumption. So long as these docs are 80% accurate to what is needed, thats good enough to get started. It's easy to fall into the trap of trying to tune that last 20% which takes ages and ends up being unnecessary. The finer details will flesh themselves out as we implement the code step by step.

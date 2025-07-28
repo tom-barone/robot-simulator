@@ -33,9 +33,6 @@ class UsingTheCLITest < Minitest::Test
 
   def spawn_simulator
     PTY.spawn('ruby', 'lib/robot_simulator.rb') do |output, input, pid|
-      # Keeping the PTY file descriptor open prevents
-      # linux from throwing an EIO error
-      # https://stackoverflow.com/a/72976571
       yield output, input, pid
     rescue Errno::EIO
       # Ignore EIO errors that can occur when the PTY is closed
