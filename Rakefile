@@ -39,11 +39,14 @@ task :types do
   sh 'bundle exec steep check'
 end
 
-desc 'Make sure checks pass in Docker'
+desc 'Make sure checks pass in Docker, for both x86 and ARM'
 task :docker do
-  # Quiet to avoid stuffing too much output into Claude Code
-  sh 'docker build --quiet -t robot-simulator .'
-  sh "docker run --rm robot-simulator rake #{CHECKS.join(' ')}"
+  %w[linux/amd64 linux/arm64].each do |platform|
+    tag = "robot-simulator:#{platform}".tr('/', '-')
+    # Quiet build to avoid stuffing too much output into Claude Code
+    sh "docker build --quiet --platform #{platform} -t #{tag} ."
+    sh "docker run --rm #{tag} rake #{CHECKS.join(' ')}"
+  end
 end
 
 desc 'Run all pre-commit checks'
