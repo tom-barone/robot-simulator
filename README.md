@@ -12,7 +12,7 @@ docker run --rm -it robot-simulator
 ## Features
 
 - Source code in `lib/`.
-- RBS type signatures in `rbs/`.
+- RBS type signatures in `sig/`.
 - Tests in `test/`.
   - 100% coverage (doesn't really need to be that high in practice).
 - [CI Github Action](https://github.com/tom-barone/robot-simulator/actions) that runs on each push to `main`.
