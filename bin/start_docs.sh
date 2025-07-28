@@ -25,16 +25,20 @@ cookie_secret="$(dd if=/dev/urandom bs=32 count=1 2>/dev/null | base64 | tr -d -
 
 bundle exec rake docs
 
-# Start the proxy on $PORT and redirect traffic to the docs directory
-# - The http-address needs to be set to 0.0.0.0 when deployed with Dokku
+# Start the proxy on $PORT and redirect traffic to the docs directory.
+# The http-address needs to be set to 0.0.0.0 when deployed with Dokku.
 # https://oauth2-proxy.github.io/oauth2-proxy/7.6.x/configuration/providers/github
+#
+# NOTE: Since we're making this public now, we'll use `--skip-auth-regex=*` to allow all traffic without authentication.
+# The following args can be added back if we want to put this behind Github auth:
+#   --provider=github \
+#   --github-user="tom-barone" \
 ./bin/oauth2-proxy \
 	--http-address="$HOSTNAME:$PORT" \
 	--upstream="file://$PWD/doc#/" \
 	--cookie-secret="$cookie_secret" \
 	--email-domain="*" \
-	--provider=github \
-	--github-user="tom-barone" \
+	--skip-auth-route=".*" \
 	--banner="Please sign in" \
 	--custom-sign-in-logo="-" \
 	--footer="Robot Simulator" \
