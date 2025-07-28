@@ -99,9 +99,12 @@ class CLITest < Minitest::Test
 
   def with_input(input_string)
     original_stdin = $stdin
+    original_stdout = $stdout
     $stdin = StringIO.new(input_string)
+    $stdout = StringIO.new
     yield
   ensure
     $stdin = original_stdin
+    $stdout = original_stdout
   end
 end

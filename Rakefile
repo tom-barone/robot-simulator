@@ -20,6 +20,7 @@ end
 desc 'Run tests'
 task :test do
   Minitest::TestTask.create
+  # Run like `rake test A='--verbose` to pass additional arguments
   Rake::Task['test'].invoke
 end
 
