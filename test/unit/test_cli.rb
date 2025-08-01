@@ -108,6 +108,61 @@ class CLITest < Minitest::Test
     $stdout = original_stdout
   end
 
+  def test_cli_intro_includes_find_command
+    # Arrange
+    parser = Command::StringParser.new
+    cli = CLI.new(parser)
+    original_stdout = $stdout
+    output = StringIO.new
+
+    # Act
+    $stdout = output
+    cli.show_intro
+
+    # Assert
+    assert_match(/FIND X,Y/, output.string)
+  ensure
+    $stdout = original_stdout
+  end
+
+  def test_cli_formats_path_arrays_as_arrow_separated_coordinates
+    # Arrange
+    parser = Command::StringParser.new
+    cli = CLI.new(parser)
+    path = [Position.new(0, 0), Position.new(1, 0), Position.new(2, 0)]
+    successful_result = Command::Result.success(path)
+    original_stdout = $stdout
+    output = StringIO.new
+
+    # Act
+    $stdout = output
+    cli.handle_result(successful_result)
+
+    # Assert
+    assert_equal "Output: 0,0 -> 1,0 -> 2,0\n", output.string
+  ensure
+    $stdout = original_stdout
+  end
+
+  def test_cli_formats_empty_path_arrays_as_no_path_found
+    # Arrange
+    parser = Command::StringParser.new
+    cli = CLI.new(parser)
+    empty_path = []
+    successful_result = Command::Result.success(empty_path)
+    original_stdout = $stdout
+    output = StringIO.new
+
+    # Act
+    $stdout = output
+    cli.handle_result(successful_result)
+
+    # Assert
+    assert_equal "Output: No path found\n", output.string
+  ensure
+    $stdout = original_stdout
+  end
+
   private
 
   def create_place_command

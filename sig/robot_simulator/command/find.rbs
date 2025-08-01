@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+module RobotSimulator
+	module Command
+		class Find
+			@goal_position: Position
+
+			attr_reader goal_position: Position
+
+			def initialize: (Position goal_position) -> void
+			def execute: (Controller controller) -> Command::Result
+
+			private
+
+			type queue_item = [Position, Array[Position]]
+
+			def find_path: (Position start, Position goal, Board board) -> Array[Position]
+			def valid_move?: (Position position, Board board) -> bool
+		end
+	end
+end

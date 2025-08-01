@@ -8,6 +8,7 @@ module RobotSimulator
       Type your commands below. Available commands:
       - PLACE X,Y,F (e.g., PLACE 0,0,NORTH)
       - PUT_OBSTACLE X,Y (e.g., PUT_OBSTACLE 2,3)
+      - FIND X,Y (e.g., FIND 3,4)
       - MOVE
       - LEFT
       - RIGHT
@@ -39,7 +40,24 @@ module RobotSimulator
       if result.error?
         puts "Error: #{result.error_message}"
       elsif result.value
-        puts "Output: #{result.value}"
+        output = format_output(result.value)
+        puts "Output: #{output}"
+      end
+    end
+
+    private
+
+    def format_output(value)
+      case value
+      when Array
+        # Handle path arrays from FIND command
+        if value.empty?
+          'No path found'
+        else
+          value.map { |pos| "#{pos.x},#{pos.y}" }.join(' -> ')
+        end
+      else
+        value.to_s
       end
     end
   end
