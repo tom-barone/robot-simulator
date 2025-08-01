@@ -2,8 +2,11 @@ module RobotSimulator
   class Board
     attr_reader width: Integer
     attr_reader height: Integer
+    attr_reader obstacles: Set[Position]
 
-    def initialize: (Integer width, Integer height) -> void
+    def initialize: (Integer width, Integer height, ?Set[Position] obstacles) -> void
     def valid?: (Position position) -> bool
+    def obstacle?: (Position position) -> bool
+    def add_obstacle: (Position position) -> Board
   end
 end

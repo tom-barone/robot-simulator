@@ -65,4 +65,53 @@ class BoardTest < Minitest::Test
     # Assert
     refute result
   end
+
+  def test_obstacle_returns_false_when_no_obstacles_exist
+    # Arrange
+    board = Board.new(5, 5)
+    position = Position.new(2, 3)
+
+    # Act
+    result = board.obstacle?(position)
+
+    # Assert
+    refute result
+  end
+
+  def test_add_obstacle_returns_new_board_instance
+    # Arrange
+    board = Board.new(5, 5)
+    position = Position.new(2, 3)
+
+    # Act
+    new_board = board.add_obstacle(position)
+
+    # Assert
+    refute_same board, new_board
+  end
+
+  def test_obstacle_returns_true_after_adding_obstacle
+    # Arrange
+    board = Board.new(5, 5)
+    position = Position.new(2, 3)
+    board_with_obstacle = board.add_obstacle(position)
+
+    # Act
+    result = board_with_obstacle.obstacle?(position)
+
+    # Assert
+    assert result
+  end
+
+  def test_add_obstacle_does_not_mutate_original_board
+    # Arrange
+    board = Board.new(5, 5)
+    position = Position.new(2, 3)
+
+    # Act
+    board.add_obstacle(position)
+
+    # Assert
+    refute board.obstacle?(position)
+  end
 end
