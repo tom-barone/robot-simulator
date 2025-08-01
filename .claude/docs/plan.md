@@ -91,13 +91,6 @@ The robot simulator is fully functional with all basic commands (PLACE, MOVE, LE
 3. Write test for placing obstacles before robot is placed
 4. Write test for re-placing robot after obstacles are set
 
-### Step 10: Update Type Signatures
-
-1. Update sig/robot_simulator/board.rbs with obstacle methods
-2. Update sig/robot_simulator/controller.rbs with update_board
-3. Add sig/robot_simulator/errors.rbs for new error classes
-4. Add sig/robot_simulator/command/put_obstacle.rbs
-
 ## Implementation Order Rationale
 
 1. **Error classes first**: Needed by commands to return appropriate errors

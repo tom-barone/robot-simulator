@@ -7,4 +7,13 @@ module RobotSimulator
 
   class RobotWouldFallError < Error
   end
+
+  class ObstacleInTheWayError < Error
+  end
+
+  class RobotInTheWayError < Error
+  end
+
+  class ObstacleWouldFallError < Error
+  end
 end
