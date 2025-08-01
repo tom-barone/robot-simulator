@@ -9,6 +9,7 @@
 - F (facing direction) must be exactly NORTH, SOUTH, EAST, or WEST (case-sensitive).
 - Origin (0,0) is at the SOUTH WEST corner of the table.
 - Invalid placements outside table bounds must display an error message and do nothing.
+- Robot cannot be placed on a position occupied by an obstacle and must display an error message and do nothing.
 - Robot is not placed when the application begins.
 - A new valid PLACE command overrides any previous placement.
 
@@ -19,6 +20,7 @@
 - EAST increases X coordinate by 1, WEST decreases X coordinate by 1.
 - Robot position updates only for valid moves that keep robot within bounds.
 - Movement that would cause the robot to fall off the table must display an error message and do nothing.
+- Movement that would cause the robot to move into an obstacle must display an error message and do nothing.
 - MOVE commands issued before a robot is placed must display an error message and do nothing.
 
 ### Robot Rotation
@@ -27,6 +29,17 @@
 - RIGHT command rotates robot 90 degrees clockwise without changing position.
 - Rotation sequence follows: NORTH → WEST → SOUTH → EAST → NORTH (LEFT) and NORTH → EAST → SOUTH → WEST → NORTH (RIGHT).
 - Rotation commands issued before a robot is placed must display an error message and do nothing.
+
+### Obstacle Placement
+
+- The system must allow placing obstacles on the table with PUT_OBSTACLE X,Y command.
+- X and Y coordinates must be integers from 0-4 (inclusive).
+- Invalid obstacle placements outside table bounds must display an error message and do nothing.
+- Obstacles cannot be placed on a position occupied by another obstacle and must display an error message and do nothing.
+- Obstacles cannot be placed on a position occupied by the robot and must display an error message and do nothing.
+- PUT_OBSTACLE commands can be issued before a robot is placed.
+- Obstacles remain on the board even when the robot is re-placed elsewhere.
+- Board starts with no obstacles.
 
 ### Reporting
 
@@ -52,11 +65,12 @@
 
 ### Available Commands
 
-- PLACE X,Y,F (where X,Y are integers 0-4, F is NORTH/SOUTH/EAST/WEST)
+- PLACE X,Y,F (where X,Y are integers, F is NORTH/SOUTH/EAST/WEST)
 - MOVE (no parameters)
 - LEFT (no parameters)
 - RIGHT (no parameters)
 - REPORT (no parameters)
+- PUT_OBSTACLE X,Y (where X,Y are integers)
 - EXIT (no parameters)
 
 ### Application Lifecycle
@@ -71,7 +85,7 @@
 - Successful REPORT output: "Output: X,Y,DIRECTION" (e.g., "Output: 0,1,NORTH")
 - Error messages: "Error: [error description]" (e.g., "Error: No robot has been placed on the board")
 - All output is written to standard output (stdout).
-- No output is produced for successful PLACE, MOVE, LEFT, or RIGHT commands.
+- No output is produced for successful PLACE, MOVE, LEFT, RIGHT, or PUT_OBSTACLE commands.
 
 ## Non-Functional Requirements
 
@@ -116,7 +130,6 @@
 - Robot attributes beyond position and direction.
 - Robot movement beyond basic forward movement in the 4 cardinal directions.
 - Board sizes other than 5x5 as default (though the system architecture supports different sizes).
-- Obstacles, barriers, or other special zones on the board.
 - Saving or loading robot state between runs.
 - Advanced commands beyond basic movement, rotation, and reporting.
 - User interface beyond command-line input/output.

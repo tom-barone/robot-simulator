@@ -5,7 +5,7 @@ The system is a command-line robot simulator that controls a single robot on a 5
 # Entities
 
 - Robot - Immutable robot entity with position, direction, and movement capabilities
-- Board - The table that defines valid positions and boundaries  
+- Board - The table that defines valid positions and boundaries, manages obstacles
 - Position - Immutable value object representing X,Y coordinates on the board
 - Direction - Module with constants and methods for cardinal directions (NORTH, SOUTH, EAST, WEST)
 - Command::Place - Concrete command to place robot at specific position and direction
@@ -13,6 +13,7 @@ The system is a command-line robot simulator that controls a single robot on a 5
 - Command::Left - Concrete command to rotate robot counter-clockwise
 - Command::Right - Concrete command to rotate robot clockwise
 - Command::Report - Concrete command to output robot's current state
+- Command::PutObstacle - Concrete command to place obstacle at specific position
 - Command::Exit - Concrete command to signal application termination
 - Command::Result - Result object encapsulating success/error states
 - Command::StringParser - Parses text input into command objects
@@ -22,6 +23,9 @@ The system is a command-line robot simulator that controls a single robot on a 5
 - Error - Base error class
 - NoRobotPlacedError - Error when commands are executed without a placed robot
 - RobotWouldFallError - Error when operations would move robot outside board boundaries
+- ObstacleInTheWayError - Error when robot movement or placement is blocked by obstacle
+- RobotInTheWayError - Error when obstacle placement is blocked by robot
+- ObstacleWouldFallError
 
 # Class Diagrams
 
@@ -58,8 +62,11 @@ classDiagram
     class Board {
         +width: Integer
         +height: Integer
+        +obstacles: Set[Position]
         +initialize(width: Integer, height: Integer): Board
         +valid?(position: Position): Boolean
+        +has_obstacle?(position: Position): Boolean
+        +add_obstacle(position: Position): Board
     }
 
     class Controller {
@@ -67,6 +74,7 @@ classDiagram
         +board: Board
         +initialize(robot: Robot, board: Board): Controller
         +update_robot(new_robot: Robot): void
+        +update_board(new_board: Board): void
     }
 
     class Simulator {
@@ -122,6 +130,12 @@ classDiagram
         +execute(controller: Controller): Result
     }
 
+    class CommandPutObstacle {
+        +position: Position
+        +initialize(position: Position): PutObstacle
+        +execute(controller: Controller): Result
+    }
+
     class CommandStringParser {
         +parse(input: String): Command
     }
@@ -135,6 +149,18 @@ classDiagram
     }
 
     class RobotWouldFallError {
+        <<Error>>
+    }
+
+    class ObstacleInTheWayError {
+        <<Error>>
+    }
+
+    class RobotInTheWayError {
+        <<Error>>
+    }
+
+    class ObstacleWouldFallError {
         <<Error>>
     }
 
@@ -154,14 +180,20 @@ classDiagram
     CommandRight --> CommandResult
     CommandReport --> CommandResult
     CommandExit --> CommandResult
+    CommandPutObstacle --> Position
+    CommandPutObstacle --> CommandResult
     CommandStringParser --> CommandPlace
     CommandStringParser --> CommandMove
     CommandStringParser --> CommandLeft
     CommandStringParser --> CommandRight
     CommandStringParser --> CommandReport
     CommandStringParser --> CommandExit
+    CommandStringParser --> CommandPutObstacle
     Error <|-- NoRobotPlacedError
     Error <|-- RobotWouldFallError
+    Error <|-- ObstacleInTheWayError
+    Error <|-- RobotInTheWayError
+    Error <|-- ObstacleWouldFallError
 ```
 
 # Architecture
@@ -180,7 +212,7 @@ The system is fully implemented with a complete CLI interface. The main entry po
 ## Key Design Decisions
 
 ### Immutable Domain Objects
-All domain objects (Robot, Position) are immutable and return new instances when modified, preventing accidental state mutation and supporting functional programming principles.
+All domain objects (Robot, Position, Board) are immutable and return new instances when modified, preventing accidental state mutation and supporting functional programming principles.
 
 ### Command Pattern with Result Objects
 Each robot instruction is encapsulated as a command object that returns a Command::Result, enabling consistent error handling without exceptions and clean separation of parsing from execution.
@@ -192,4 +224,7 @@ Commands return Result.success(value) or Result.error(error) instead of raising 
 Direction is implemented as a module with symbol constants (NORTH, SOUTH, EAST, WEST) and class methods for rotation logic, avoiding object creation overhead.
 
 ### Controller as State Manager
-The Controller holds references to the current robot and board, providing an update_robot() method for state transitions. Commands interact with the Controller to access and modify application state.
+The Controller holds references to the current robot and board, providing update_robot() and update_board() methods for state transitions. Commands interact with the Controller to access and modify application state.
+
+### Board with Obstacle Management
+The Board now maintains a set of obstacle positions and provides methods to check for obstacles and add new ones. The Board remains immutable, returning a new instance when obstacles are added.
