@@ -14,5 +14,9 @@ module RobotSimulator
     def update_robot(new_robot)
       @robot = new_robot
     end
+
+    def update_board(new_board)
+      @board = new_board
+    end
   end
 end

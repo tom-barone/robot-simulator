@@ -1,0 +1,15 @@
+module RobotSimulator
+  module Command
+    class PutObstacle
+      attr_reader position: Position
+
+      def initialize: (Position position) -> void
+      def execute: (Controller controller) -> Result
+
+      private
+
+      def validate_obstacle_placement: (Controller controller) -> Result?
+      def robot_at_position?: (Controller controller) -> (bool | nil)
+    end
+  end
+end

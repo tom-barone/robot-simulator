@@ -85,4 +85,14 @@ class TestStringParserValid < Minitest::Test
     # Assert
     assert_instance_of Command::Place, command
   end
+
+  def test_parser_creates_put_obstacle_command_from_put_obstacle_string
+    # Arrange - setup done in setup method
+
+    # Act
+    command = @parser.parse('PUT_OBSTACLE 0,0')
+
+    # Assert
+    assert_instance_of Command::PutObstacle, command
+  end
 end

@@ -91,6 +91,23 @@ class CLITest < Minitest::Test
     $stdout = original_stdout
   end
 
+  def test_cli_intro_includes_put_obstacle_command
+    # Arrange
+    parser = Command::StringParser.new
+    cli = CLI.new(parser)
+    original_stdout = $stdout
+    output = StringIO.new
+
+    # Act
+    $stdout = output
+    cli.show_intro
+
+    # Assert
+    assert_match(/PUT_OBSTACLE X,Y/, output.string)
+  ensure
+    $stdout = original_stdout
+  end
+
   private
 
   def create_place_command

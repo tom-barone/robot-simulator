@@ -12,13 +12,17 @@ module RobotSimulator
       end
 
       def execute(controller)
-        if controller.board.valid?(@position)
-          robot = Robot.new(@position, @direction)
-          controller.update_robot(robot)
-          Result.success
-        else
-          Result.error(RobotWouldFallError)
+        unless controller.board.valid?(@position)
+          return Result.error(RobotWouldFallError.new)
         end
+
+        if controller.board.obstacle?(@position)
+          return Result.error(ObstacleInTheWayError.new)
+        end
+
+        robot = Robot.new(@position, @direction)
+        controller.update_robot(robot)
+        Result.success
       end
     end
   end
