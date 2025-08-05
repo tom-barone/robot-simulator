@@ -185,4 +185,31 @@ class TestStringParserErrors < Minitest::Test
       @parser.parse('FIND x,y')
     end
   end
+
+  def test_parser_raises_error_for_find_moves_command_without_arguments
+    # Arrange - setup done in setup method
+
+    # Act & Assert
+    assert_raises(ArgumentError) do
+      @parser.parse('FIND_MOVES')
+    end
+  end
+
+  def test_parser_raises_error_for_find_moves_command_with_invalid_format
+    # Arrange - setup done in setup method
+
+    # Act & Assert
+    assert_raises(ArgumentError) do
+      @parser.parse('FIND_MOVES 0')
+    end
+  end
+
+  def test_parser_raises_error_for_find_moves_with_non_integer_coordinates
+    # Arrange - setup done in setup method
+
+    # Act & Assert
+    assert_raises(ArgumentError) do
+      @parser.parse('FIND_MOVES x,y')
+    end
+  end
 end

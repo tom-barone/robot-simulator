@@ -18,6 +18,7 @@ module RobotSimulator
         when 'PLACE' then parse_place_command(args)
         when 'PUT_OBSTACLE' then parse_put_obstacle_command(args)
         when 'FIND' then parse_find_command(args)
+        when 'FIND_MOVES' then parse_find_moves_command(args)
         else
           create_simple_command(command_name)
         end
@@ -124,6 +125,33 @@ module RobotSimulator
       end
 
       def extract_find_components(parts)
+        x = Integer(parts[0], 10)
+        y = Integer(parts[1], 10)
+        [x, y]
+      end
+
+      def parse_find_moves_command(args)
+        if args.nil? || args.empty?
+          raise ArgumentError,
+                'Invalid command: FIND_MOVES command requires arguments'
+        end
+
+        parts = args.split(',')
+        validate_find_moves_format(parts)
+
+        x, y = extract_find_moves_components(parts)
+        goal_position = Position.new(x, y)
+        Command::FindMoves.new(goal_position)
+      end
+
+      def validate_find_moves_format(parts)
+        return if parts.length == 2
+
+        raise ArgumentError,
+              'Invalid command: FIND_MOVES command requires the format X,Y'
+      end
+
+      def extract_find_moves_components(parts)
         x = Integer(parts[0], 10)
         y = Integer(parts[1], 10)
         [x, y]

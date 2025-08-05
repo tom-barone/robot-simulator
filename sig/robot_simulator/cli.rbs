@@ -14,5 +14,6 @@ module RobotSimulator
     private
 
     def format_output: (untyped value) -> String
+    def command_to_string: (untyped command) -> String
   end
 end

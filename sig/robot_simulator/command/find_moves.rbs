@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+module RobotSimulator
+	module Command
+		class FindMoves
+			@goal_position: Position
+
+			attr_reader goal_position: Position
+
+			def initialize: (Position goal_position) -> void
+			def execute: (Controller controller) -> Command::Result
+
+			private
+
+			def find_path: (Position start, Position goal, Board board) -> Array[Position]
+			def path_to_commands: (Array[Position] path, Direction::direction_t current_direction) -> Array[command_t]
+			def calculate_direction: (Position from_pos, Position to_pos) -> Direction::direction_t
+			def generate_turn_commands: (Direction::direction_t current_direction, Direction::direction_t target_direction) -> Array[Command::Left | Command::Right]
+		end
+	end
+end
