@@ -6,6 +6,5 @@ module RobotSimulator
     def initialize: (Robot? robot, Board board) -> void
 
     def update_robot: (Robot robot) -> void
-    def update_board: (Board board) -> void
   end
 end

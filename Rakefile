@@ -9,8 +9,7 @@
 require 'rubocop/rake_task'
 require 'minitest/test_task'
 
-# CHECKS = %i[format lint types test docs].freeze
-CHECKS = %i[format types test docs].freeze
+CHECKS = %i[format lint types test docs].freeze
 task default: :precommit
 
 desc 'Run linters'

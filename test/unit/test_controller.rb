@@ -31,18 +31,4 @@ class ControllerTest < Minitest::Test
     # Assert
     assert_equal new_robot, controller.robot
   end
-
-  def test_controller_can_update_board
-    # Arrange
-    board = Board.new(5, 5)
-    robot = Robot.new(Position.new(1, 1), Direction::NORTH)
-    controller = Controller.new(robot, board)
-    new_board = Board.new(3, 3)
-
-    # Act
-    controller.update_board(new_board)
-
-    # Assert
-    assert_equal new_board, controller.board
-  end
 end

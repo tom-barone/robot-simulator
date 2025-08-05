@@ -7,7 +7,6 @@ module RobotSimulator
       Welcome to the Robot Simulator!
       Type your commands below. Available commands:
       - PLACE X,Y,F (e.g., PLACE 0,0,NORTH)
-      - PUT_OBSTACLE X,Y (e.g., PUT_OBSTACLE 2,3)
       - MOVE
       - LEFT
       - RIGHT

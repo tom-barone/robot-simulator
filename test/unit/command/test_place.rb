@@ -36,21 +36,4 @@ class PlaceCommandTest < Minitest::Test
     assert_predicate result, :error?
     assert_instance_of RobotWouldFallError, result.error
   end
-
-  def test_place_command_fails_when_position_has_obstacle
-    # Arrange
-    board = Board.new(5, 5)
-    position = Position.new(2, 3)
-    board_with_obstacle = board.add_obstacle(position)
-    controller = Controller.new(nil, board_with_obstacle)
-    direction = Direction::NORTH
-    command = Command::Place.new(position, direction)
-
-    # Act
-    result = command.execute(controller)
-
-    # Assert
-    assert_predicate result, :error?
-    assert_instance_of ObstacleInTheWayError, result.error
-  end
 end

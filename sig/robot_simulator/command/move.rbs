@@ -2,10 +2,6 @@ module RobotSimulator
   module Command
     class Move
       def execute: (Controller controller) -> Result
-
-      private
-
-      def validate_move: (Board board, Position position) -> Result?
     end
   end
 end

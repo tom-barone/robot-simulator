@@ -16,14 +16,6 @@ module RobotSimulator
       def create_command(command_name, args)
         case command_name
         when 'PLACE' then parse_place_command(args)
-        when 'PUT_OBSTACLE' then parse_put_obstacle_command(args)
-        else
-          create_simple_command(command_name)
-        end
-      end
-
-      def create_simple_command(command_name)
-        case command_name
         when 'MOVE' then Command::Move.new
         when 'LEFT' then Command::Left.new
         when 'RIGHT' then Command::Right.new
@@ -72,33 +64,6 @@ module RobotSimulator
         else
           raise ArgumentError, "Invalid direction '#{direction_str}'"
         end
-      end
-
-      def parse_put_obstacle_command(args)
-        if args.nil? || args.empty?
-          raise ArgumentError,
-                'Invalid command: PUT_OBSTACLE command requires arguments'
-        end
-
-        parts = args.split(',')
-        validate_put_obstacle_format(parts)
-
-        x, y = extract_put_obstacle_components(parts)
-        position = Position.new(x, y)
-        Command::PutObstacle.new(position)
-      end
-
-      def validate_put_obstacle_format(parts)
-        return if parts.length == 2
-
-        raise ArgumentError,
-              'Invalid command: PUT_OBSTACLE command requires the format X,Y'
-      end
-
-      def extract_put_obstacle_components(parts)
-        x = Integer(parts[0], 10)
-        y = Integer(parts[1], 10)
-        [x, y]
       end
     end
   end
