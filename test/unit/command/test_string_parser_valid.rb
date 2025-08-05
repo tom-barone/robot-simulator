@@ -106,15 +106,4 @@ class TestStringParserValid < Minitest::Test
     assert_instance_of Command::Find, command
     assert_equal Position.new(2, 3), command.goal_position
   end
-
-  def test_parser_creates_find_moves_command_from_find_moves_string
-    # Arrange - setup done in setup method
-
-    # Act
-    command = @parser.parse('FIND_MOVES 2,3')
-
-    # Assert
-    assert_instance_of Command::FindMoves, command
-    assert_equal Position.new(2, 3), command.goal_position
-  end
 end

@@ -163,42 +163,6 @@ class CLITest < Minitest::Test
     $stdout = original_stdout
   end
 
-  def test_cli_intro_includes_find_moves_command
-    # Arrange
-    parser = Command::StringParser.new
-    cli = CLI.new(parser)
-    original_stdout = $stdout
-    output = StringIO.new
-
-    # Act
-    $stdout = output
-    cli.show_intro
-
-    # Assert
-    assert_match(/FIND_MOVES X,Y/, output.string)
-  ensure
-    $stdout = original_stdout
-  end
-
-  def test_cli_formats_command_arrays_as_arrow_separated_names
-    # Arrange
-    parser = Command::StringParser.new
-    cli = CLI.new(parser)
-    commands = [Command::Left.new, Command::Move.new, Command::Right.new]
-    successful_result = Command::Result.success(commands)
-    original_stdout = $stdout
-    output = StringIO.new
-
-    # Act
-    $stdout = output
-    cli.handle_result(successful_result)
-
-    # Assert
-    assert_equal "Output: LEFT -> MOVE -> RIGHT\n", output.string
-  ensure
-    $stdout = original_stdout
-  end
-
   private
 
   def create_place_command

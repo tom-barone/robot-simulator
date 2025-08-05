@@ -2,7 +2,7 @@
 
 module RobotSimulator
 	module Command
-		type command_t = Command::Place | Command::Move | Command::Left | Command::Right | Command::Report | Command::Exit | Command::PutObstacle | Command::Find | Command::FindMoves
+		type command_t = Command::Place | Command::Move | Command::Left | Command::Right | Command::Report | Command::Exit | Command::PutObstacle | Command::Find
 
 		class StringParser
 			def parse: (String input) -> command_t
@@ -14,15 +14,12 @@ module RobotSimulator
 			def parse_place_command: (String? args) -> Command::Place
 			def parse_put_obstacle_command: (String? args) -> Command::PutObstacle
 			def parse_find_command: (String? args) -> Command::Find
-			def parse_find_moves_command: (String? args) -> Command::FindMoves
 			def validate_place_format: (Array[String] parts) -> void
 			def validate_put_obstacle_format: (Array[String] parts) -> void
 			def validate_find_format: (Array[String] parts) -> void
-			def validate_find_moves_format: (Array[String] parts) -> void
 			def extract_place_components: (Array[String] parts) -> [Integer, Integer, String]
 			def extract_put_obstacle_components: (Array[String] parts) -> [Integer, Integer]
 			def extract_find_components: (Array[String] parts) -> [Integer, Integer]
-			def extract_find_moves_components: (Array[String] parts) -> [Integer, Integer]
 			def parse_direction: (String direction_str) -> Direction::direction_t
 		end
 	end
