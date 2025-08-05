@@ -23,7 +23,7 @@ docker run --rm -it robot-simulator
   - Runs the test suite with Minitest.
   - Generates a code coverage report with SimpleCov (downloadable from the CI artifacts).
   - Generates documentation with rdoc. (downloadable from the CI artifacts).
-  - Deploys the rdoc docs [here](https://robot-simulator.tombarone.net/).
+  - Deploys the rdoc docs [here](https://robot-simulator.tombarone.net/) (disabled)
     - ~~Hidden behind [`oauth2-proxy`](https://oauth2-proxy.github.io/oauth2-proxy/) for authentication, with only select GitHub users allowed access.~~
     - The website is now public and accessible to anyone, since our repo is now also public.
 
