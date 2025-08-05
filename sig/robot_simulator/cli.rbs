@@ -10,9 +10,5 @@ module RobotSimulator
     def show_intro: () -> void
     def read_command: () { (Command::command_t) -> void } -> void
     def handle_result: (Command::Result result) -> void
-
-    private
-
-    def format_output: (untyped value) -> String
   end
 end

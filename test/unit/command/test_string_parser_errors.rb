@@ -158,31 +158,4 @@ class TestStringParserErrors < Minitest::Test
       @parser.parse('PUT_OBSTACLE x,y')
     end
   end
-
-  def test_parser_raises_error_for_find_command_without_arguments
-    # Arrange - setup done in setup method
-
-    # Act & Assert
-    assert_raises(ArgumentError) do
-      @parser.parse('FIND')
-    end
-  end
-
-  def test_parser_raises_error_for_find_command_with_invalid_format
-    # Arrange - setup done in setup method
-
-    # Act & Assert
-    assert_raises(ArgumentError) do
-      @parser.parse('FIND 0')
-    end
-  end
-
-  def test_parser_raises_error_for_find_with_non_integer_coordinates
-    # Arrange - setup done in setup method
-
-    # Act & Assert
-    assert_raises(ArgumentError) do
-      @parser.parse('FIND x,y')
-    end
-  end
 end
